@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "713766000590",
+    "firebase_url": "https://flash-chat-dsd-19-2-dfbae.firebaseio.com",
+    "project_id": "flash-chat-dsd-19-2-dfbae",
+    "storage_bucket": "flash-chat-dsd-19-2-dfbae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:713766000590:android:74819ceb60ece56fb57d9f",
+        "android_client_info": {
+          "package_name": "pe.edu.unmsm.jhonatantirado.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "713766000590-ram3d6bqe7mf4t6nb9vn3acdbv3sian1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pe.edu.unmsm.jhonatantirado.flash_chat",
+            "certificate_hash": "b90d0368484a97173fb16c1e4397242ffd7c5a48"
+          }
+        },
+        {
+          "client_id": "713766000590-1kjlp0s43h43v80iea6jetr1ak4vfdd6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJRW7SEK8rw5CG-QFWHIRJlUAtdDnl5dc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "713766000590-1kjlp0s43h43v80iea6jetr1ak4vfdd6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
