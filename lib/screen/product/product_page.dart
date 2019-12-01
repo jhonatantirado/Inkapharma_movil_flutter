@@ -21,7 +21,7 @@ class ProductListPageState extends State<ProductListPage> {
 
   @override
   Widget build(BuildContext context) {
-    final title = "Grid List";
+    //final title = "Grid List";
 
     return MaterialApp(
       debugShowCheckedModeBanner: false

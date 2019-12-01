@@ -75,7 +75,7 @@ implements HomeScreenContract
   }
 
   Widget _indexBottom() => BottomNavigationBar(
-        currentIndex: _currentIndex,
+        currentIndex: _currentIndex,  
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
