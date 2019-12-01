@@ -29,7 +29,6 @@ dependencies:
   font_awesome_flutter: ^8.5.0
   email_validator: ^1.0.0
   geolocator: '^5.1.4+2'
-  #flutter_rating: ^0.0.2
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +50,7 @@ flutter:
   assets:
    - assets/login_background.jpg
    - assets/home.PNG
+   - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
