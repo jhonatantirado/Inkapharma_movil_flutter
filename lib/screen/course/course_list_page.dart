@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/infraestructure/Sqflite_CourseRepository.dart';
-import 'package:todo_app/data/database_helper.dart';
-import 'package:todo_app/model/course.dart';
-import 'package:todo_app/screen/course/course_detail_page.dart';
+import 'package:inkapharma/infraestructure/Sqflite_CourseRepository.dart';
+import 'package:inkapharma/data/database_helper.dart';
+import 'package:inkapharma/model/course.dart';
+import 'package:inkapharma/screen/course/course_detail_page.dart';
 
 class CourseListPage extends StatefulWidget {
   @override

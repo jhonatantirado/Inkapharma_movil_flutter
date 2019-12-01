@@ -1,6 +1,6 @@
-import 'package:todo_app/infraestructure/Sqflite_UserRepository.dart';
-import 'package:todo_app/model/user.dart';
-import 'package:todo_app/data/database_helper.dart';
+import 'package:inkapharma/infraestructure/Sqflite_UserRepository.dart';
+import 'package:inkapharma/model/user.dart';
+import 'package:inkapharma/data/database_helper.dart';
 
 abstract class HomeScreenContract {
   void onDisplayUserInfo(User user);

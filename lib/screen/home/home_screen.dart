@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/model/user.dart';
-import 'package:todo_app/screen/home/home_screen_presenter.dart';
-import 'package:todo_app/common/app_constants.dart';
+import 'package:inkapharma/model/user.dart';
+import 'package:inkapharma/screen/home/home_screen_presenter.dart';
+import 'package:inkapharma/common/app_constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:todo_app/screen/user/user_list_page.dart';
-import 'package:todo_app/screen/course/course_list_page.dart';
-import 'package:todo_app/auth.dart';
-import 'package:todo_app/screen/home/home_screen_page.dart';
-import 'package:todo_app/screen/product/product_page.dart';
+import 'package:inkapharma/screen/user/user_list_page.dart';
+import 'package:inkapharma/screen/course/course_list_page.dart';
+import 'package:inkapharma/auth.dart';
+import 'package:inkapharma/screen/home/home_screen_page.dart';
+import 'package:inkapharma/screen/product/product_page.dart';
 
 class HomeScreen extends StatefulWidget{
   @override

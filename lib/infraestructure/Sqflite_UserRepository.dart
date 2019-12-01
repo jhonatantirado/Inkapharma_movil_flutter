@@ -1,8 +1,8 @@
 import 'package:sqflite/sqflite.dart';
-import 'package:todo_app/assembler/user_assembler.dart';
-import 'package:todo_app/model/user.dart';
-import 'package:todo_app/data/database_helper.dart';
-import 'package:todo_app/infraestructure/UserRepository.dart';
+import 'package:inkapharma/assembler/user_assembler.dart';
+import 'package:inkapharma/model/user.dart';
+import 'package:inkapharma/data/database_helper.dart';
+import 'package:inkapharma/infraestructure/UserRepository.dart';
 
 class SqfliteUserRepository implements UserRepository{
   final assembler = UserAssembler();

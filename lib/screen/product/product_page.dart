@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/infraestructure/Sqflite_UserRepository.dart';
-import 'package:todo_app/data/database_helper.dart';
-import 'package:todo_app/model/user.dart';
-import 'package:todo_app/screen/product/product_page_detail.dart';
-import 'package:todo_app/model/choice.dart';
+import 'package:inkapharma/infraestructure/Sqflite_UserRepository.dart';
+import 'package:inkapharma/data/database_helper.dart';
+import 'package:inkapharma/model/user.dart';
+import 'package:inkapharma/screen/product/product_page_detail.dart';
+import 'package:inkapharma/model/choice.dart';
 
 //import 'package:flutter_rating/flutter_rating.dart';
 

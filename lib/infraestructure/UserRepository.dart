@@ -1,4 +1,4 @@
-import 'package:todo_app/model/user.dart';
+import 'package:inkapharma/model/user.dart';
 
 abstract class UserRepository{
   Future<int> insert(User user);

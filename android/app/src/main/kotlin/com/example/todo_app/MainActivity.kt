@@ -1,4 +1,4 @@
-package com.example.todo_app
+package pe.edu.unmsm.ddm.inkapharma
 
 import android.os.Bundle
 

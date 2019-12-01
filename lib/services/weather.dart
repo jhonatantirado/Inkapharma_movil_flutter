@@ -1,5 +1,5 @@
-import 'package:todo_app/services/location.dart';
-import 'package:todo_app/utils/network_utils.dart';
+import 'package:inkapharma/services/location.dart';
+import 'package:inkapharma/utils/network_utils.dart';
 
 const apiKey = '0f6dbc02cee2cd16bb57aeda2d9e1069';
 const openWeatherMapURL = 'https://api.openweathermap.org/data/2.5/weather';

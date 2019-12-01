@@ -1,4 +1,4 @@
-import 'package:todo_app/model/course.dart';
+import 'package:inkapharma/model/course.dart';
 
 abstract class CourseRepository {
   Future<int> insert(Course course);

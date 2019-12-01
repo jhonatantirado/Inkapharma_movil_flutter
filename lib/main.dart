@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/routes.dart';
-import 'package:todo_app/common/app_constants.dart';
+import 'package:inkapharma/routes.dart';
+import 'package:inkapharma/common/app_constants.dart';
 
 void main() => runApp(MyApp());
 

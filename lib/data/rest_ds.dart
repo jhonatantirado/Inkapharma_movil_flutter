@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:todo_app/utils/network_utils.dart';
-import 'package:todo_app/model/user.dart';
+import 'package:inkapharma/utils/network_utils.dart';
+import 'package:inkapharma/model/user.dart';
 
 class RestDatasource{
   NetworkUtil _netUtil = new NetworkUtil();

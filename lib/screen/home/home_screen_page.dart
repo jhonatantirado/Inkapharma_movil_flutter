@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-//import 'package:todo_app/infraestructure/Sqflite_UserRepository.dart';
-//import 'package:todo_app/data/database_helper.dart';
-//import 'package:todo_app/model/user.dart';
-//import 'package:todo_app/screen/user/user_detail_page.dart';
+//import 'package:inkapharma/infraestructure/Sqflite_UserRepository.dart';
+//import 'package:inkapharma/data/database_helper.dart';
+//import 'package:inkapharma/model/user.dart';
+//import 'package:inkapharma/screen/user/user_detail_page.dart';
 
 class HomeScreenPage extends StatefulWidget {
   @override

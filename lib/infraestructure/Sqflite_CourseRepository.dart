@@ -1,7 +1,7 @@
-import 'package:todo_app/assembler/course_assembler.dart';
-import 'package:todo_app/infraestructure/CourseRepository.dart';
-import 'package:todo_app/data/database_helper.dart';
-import 'package:todo_app/model/course.dart';
+import 'package:inkapharma/assembler/course_assembler.dart';
+import 'package:inkapharma/infraestructure/CourseRepository.dart';
+import 'package:inkapharma/data/database_helper.dart';
+import 'package:inkapharma/model/course.dart';
 import 'package:sqflite/sqflite.dart';
 
 class SqfliteCourseRepository implements CourseRepository {

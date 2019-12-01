@@ -1,8 +1,8 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "package:flutter/material.dart";
 import "dart:async";
-import 'package:todo_app/model/choice.dart';
-import 'package:todo_app/components/round_icon_button.dart';
+import 'package:inkapharma/model/choice.dart';
+import 'package:inkapharma/components/round_icon_button.dart';
 
 class Product_Detail extends StatefulWidget{
 

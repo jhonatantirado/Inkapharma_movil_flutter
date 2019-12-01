@@ -1,9 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:todo_app/auth.dart';
-import 'package:todo_app/common/app_constants.dart';
-import 'package:todo_app/screen/login/login_screen_presenter.dart';
-import 'package:todo_app/model/user.dart';
+import 'package:inkapharma/auth.dart';
+import 'package:inkapharma/common/app_constants.dart';
+import 'package:inkapharma/screen/login/login_screen_presenter.dart';
+import 'package:inkapharma/model/user.dart';
 
 class LoginScreen extends StatefulWidget{
   @override

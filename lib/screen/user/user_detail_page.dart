@@ -1,8 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_app/infraestructure/Sqflite_UserRepository.dart';
-import 'package:todo_app/data/database_helper.dart';
-import 'package:todo_app/model/user.dart';
+import 'package:inkapharma/infraestructure/Sqflite_UserRepository.dart';
+import 'package:inkapharma/data/database_helper.dart';
+import 'package:inkapharma/model/user.dart';
 
 SqfliteUserRepository userRepository =
     SqfliteUserRepository(DatabaseHelper.get);

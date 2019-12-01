@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/infraestructure/Sqflite_CourseRepository.dart';
-import 'package:todo_app/data/database_helper.dart';
-import 'package:todo_app/model/course.dart';
+import 'package:inkapharma/infraestructure/Sqflite_CourseRepository.dart';
+import 'package:inkapharma/data/database_helper.dart';
+import 'package:inkapharma/model/course.dart';
 
 SqfliteCourseRepository courseRepository = SqfliteCourseRepository(DatabaseHelper.get);
 final List<String> choices = const <String> [
