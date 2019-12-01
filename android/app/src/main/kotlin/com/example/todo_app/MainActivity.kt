@@ -1,4 +1,4 @@
-package com.example.todo_app
+package pe.edu.unmsm.jhonatantirado.flash_chat
 
 import android.os.Bundle
 
