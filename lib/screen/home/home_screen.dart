@@ -4,10 +4,10 @@ import 'package:todo_app/screen/home/home_screen_presenter.dart';
 import 'package:todo_app/common/app_constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:todo_app/screen/user/user_list_page.dart';
-import 'package:todo_app/screen/course/course_list_page.dart';
 import 'package:todo_app/auth.dart';
 import 'package:todo_app/screen/home/home_screen_page.dart';
 import 'package:todo_app/screen/product/product_page.dart';
+import 'package:todo_app/screen/product/cart.dart';
 
 class HomeScreen extends StatefulWidget{
   @override
@@ -41,11 +41,7 @@ implements HomeScreenContract
           centerTitle: true,
           title: Text( 
             _homeText !=null?_homeText:AppConstants.appBarTitle,
-            style: TextStyle(
-              fontSize: AppConstants.fontSize,
-              fontWeight: FontWeight.bold,
-              decoration: TextDecoration.none,
-            ),
+            style: TextStyle(fontSize: AppConstants.fontSize,fontWeight: FontWeight.bold,decoration: TextDecoration.none),
           ),
           leading: Builder(
             builder: (context) => IconButton(
@@ -57,11 +53,19 @@ implements HomeScreenContract
             InkWell(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
-                child: Icon(FontAwesomeIcons.solidBell,
-                    size: AppConstants.iconSize, color: Colors.white),
+                child: Icon(FontAwesomeIcons.signInAlt,size: AppConstants.iconSize, color: Colors.white),
               ),
               onTap: onLogout,
             ),
+            Padding(
+                padding: EdgeInsets.all(10.0),
+                child: InkResponse(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Cart()));
+                  },
+                  child: Icon(Icons.shopping_cart),
+                ),
+              ),
           ],
         ),
       ),
@@ -82,22 +86,14 @@ implements HomeScreenContract
             icon: Icon(FontAwesomeIcons.productHunt),
             title: Text('Productos'),
           ),
-          BottomNavigationBarItem(
+          /*BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.graduationCap),
             title: Text('Venta'),
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.graduationCap),
             title: Text('Usuarios'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.userTie),
-            title: Text('Cursos'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.userGraduate),
-            title: Text('Estudiantes'),
-          ),
+          )*/
         ],
         onTap: (index) {
           setState(() {
@@ -109,21 +105,12 @@ implements HomeScreenContract
               case 1:
                 content = ProductListPage();
                 break;
-              case 2:
+              /*case 2:
                 content = UserListPage();
                 break;
               case 3:
                 content = UserListPage();
-                break;
-              case 4:
-                content = CourseListPage();
-                break;
-              case 5:
-                content = Container(
-                  alignment: Alignment.center,
-                  child: Text("Estudiantes"),
-                );
-                break;
+                break;*/
             }
           });
         },
