@@ -1,18 +1,18 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_app/model/choice.dart';
+import 'package:todo_app/model/product.dart';
 import 'package:todo_app/components/round_icon_button.dart';
 
-const List<Choice> choices = const <Choice>[
-  const Choice( quantity: 1, price: 10.0, title: 'Product1', icon: Icons.directions_car, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/c/accu-chek-instant-s-test-strips-50-s-835774208.jpg"),
-  const Choice( quantity: 1,price: 5.0, title: 'Product2', icon: Icons.directions_bike, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/c/accu-chek-active-test-strip-50-s-15580684.jpg"),
-  const Choice( quantity: 1,price: 10.0,title: 'Product3', icon: Icons.directions_boat, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/c/accusure-simple-gluco-test-strip-50s--857449581.jpg"),
-  const Choice( quantity: 1,price: 5.05,title: 'Product4', icon: Icons.directions_bus, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/c/accu-chek-instant-s-blood-glucose-monitor-1-s_812638_556.jpg"),
-  const Choice( quantity: 1,price: 10.00,title: 'Product5', icon: Icons.directions_railway, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/c/accusure-simple-gluco-meter-with-25-strips--857447929.jpg"),
-  const Choice( quantity: 1,price: 5.00,title: 'Product6', icon: Icons.directions_walk, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/e/n/ensure-diabetes-care-vanilla-powder-400gm-413072622.jpg"),
-  const Choice( quantity: 1,price: 10.00,title: 'Product7', icon: Icons.directions_car, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/v/avalife-diabetes-support-tablets-60-s-828634372.jpg"),
-  const Choice( quantity: 1,price: 5.00,title: 'Product8', icon: Icons.drafts, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/p/apollo-sugar-glucome-glucometer-glucome-strips-25s-pack-diabetes-foot-wear-voucher-worth-rupees-500-1-s-846888757.jpg"),
-  const Choice( quantity: 1,price: 10.0,title: 'Product9', icon: Icons.dvr, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/l/allen-a08-diabetes-drops-30-ml-830953142.jpg")
+const List<Product> Products = const <Product>[
+  const Product( quantity: 1, price: 10.0, title: 'Product1', icon: Icons.directions_car, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/c/accu-chek-instant-s-test-strips-50-s-835774208.jpg"),
+  const Product( quantity: 1,price: 5.0, title: 'Product2', icon: Icons.directions_bike, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/c/accu-chek-active-test-strip-50-s-15580684.jpg"),
+  const Product( quantity: 1,price: 10.0,title: 'Product3', icon: Icons.directions_boat, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/c/accusure-simple-gluco-test-strip-50s--857449581.jpg"),
+  const Product( quantity: 1,price: 5.05,title: 'Product4', icon: Icons.directions_bus, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/c/accu-chek-instant-s-blood-glucose-monitor-1-s_812638_556.jpg"),
+  const Product( quantity: 1,price: 10.00,title: 'Product5', icon: Icons.directions_railway, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/c/accusure-simple-gluco-meter-with-25-strips--857447929.jpg"),
+  const Product( quantity: 1,price: 5.00,title: 'Product6', icon: Icons.directions_walk, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/e/n/ensure-diabetes-care-vanilla-powder-400gm-413072622.jpg"),
+  const Product( quantity: 1,price: 10.00,title: 'Product7', icon: Icons.directions_car, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/v/avalife-diabetes-support-tablets-60-s-828634372.jpg"),
+  const Product( quantity: 1,price: 5.00,title: 'Product8', icon: Icons.drafts, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/p/apollo-sugar-glucome-glucometer-glucome-strips-25s-pack-diabetes-foot-wear-voucher-worth-rupees-500-1-s-846888757.jpg"),
+  const Product( quantity: 1,price: 10.0,title: 'Product9', icon: Icons.dvr, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/l/allen-a08-diabetes-drops-30-ml-830953142.jpg")
   ];
 
 
@@ -49,13 +49,13 @@ class CartState extends State<Cart>{
         child:
           ListView(
               shrinkWrap: true,
-              children: choices.map((d)=>generateCart(d)).toList(),
+              children: Products.map((d)=>generateCart(d)).toList(),
             ),
         ),
       );
   }
 
-  Widget generateCart(Choice d){
+  Widget generateCart(Product d){
     return Padding(
       padding: EdgeInsets.all(5.0),
       child: Container(

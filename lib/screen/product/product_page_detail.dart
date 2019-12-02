@@ -1,13 +1,15 @@
+import 'dart:ffi';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "package:flutter/material.dart";
 import "dart:async";
-import 'package:todo_app/model/choice.dart';
+import 'package:todo_app/model/product.dart';
 import 'package:todo_app/components/round_icon_button.dart';
 
 class Product_Detail extends StatefulWidget{
 
   static final String route = "Home-route";
-  Choice detail;
+  Product detail;
   Product_Detail({this.detail});
 
   @override
@@ -24,8 +26,8 @@ double total;
 initState() {
   super.initState();
    price = widget.detail.price ;
-    total = price * quantity;
-   
+   double _total = widget.detail.price * quantity;
+   total  = num.parse(_total.toStringAsFixed(2));
 }
 
   
@@ -148,7 +150,8 @@ initState() {
                           onPressed: () {
                             setState(() {
                               quantity == 1 ?  1 : quantity--;
-                              total  = widget.detail.price * quantity;
+                              double _total = widget.detail.price * quantity;
+                              total  = num.parse(_total.toStringAsFixed(2));
                             });
                           },
                         ),
@@ -164,7 +167,8 @@ initState() {
                           onPressed: () {
                             setState(() {
                               quantity++;
-                              total = widget.detail.price * quantity;
+                              double _total = widget.detail.price * quantity;
+                              total = num.parse(_total.toStringAsFixed(2));
                             });
                           },
                         ),
