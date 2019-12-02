@@ -4,6 +4,7 @@ import 'package:inkapharma/pages/google_login_page.dart';
 import 'package:inkapharma/pages/login_page.dart';
 import 'package:inkapharma/pages/registration_page.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:inkapharma/pages/twitter_login_page.dart';
 
 class WelcomePage extends StatefulWidget {
   static const String id = 'welcome_page';
@@ -61,7 +62,7 @@ class _WelcomePageState extends State<WelcomePage>
                   ),
                 ),
                 TypewriterAnimatedTextKit(
-                  text: ['Flash Chat'],
+                  text: ['Inkafarma'],
                   textStyle: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
@@ -91,6 +92,13 @@ class _WelcomePageState extends State<WelcomePage>
               color: Colors.blueAccent,
               onPressed: () {
                 Navigator.pushNamed(context, GoogleLoginPage.id);
+              },
+            ),
+            RoundedButton(
+              title: 'Twitter Login',
+              color: Colors.blueAccent,
+              onPressed: () {
+                Navigator.pushNamed(context, TwitterLoginPage.id);
               },
             ),
           ],

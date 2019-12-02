@@ -1,6 +1,7 @@
 import 'package:inkapharma/pages/google_login_page.dart';
 import 'package:inkapharma/pages/login_page.dart';
 import 'package:inkapharma/pages/registration_page.dart';
+import 'package:inkapharma/pages/twitter_login_page.dart';
 import 'package:inkapharma/pages/welcome_page.dart';
 import 'package:inkapharma/screen/home/home_screen.dart';
 
@@ -10,5 +11,6 @@ final routes = {
   LoginPage.id: (context) => LoginPage(),
   RegistrationPage.id: (context) => RegistrationPage(),
   HomeScreen.id: (context) => HomeScreen(),
-  GoogleLoginPage.id: (context) => GoogleLoginPage()
+  GoogleLoginPage.id: (context) => GoogleLoginPage(),
+  TwitterLoginPage.id: (context) => TwitterLoginPage()
 };
