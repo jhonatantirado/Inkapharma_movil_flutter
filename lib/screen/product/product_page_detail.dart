@@ -1,10 +1,12 @@
-import 'dart:ffi';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "package:flutter/material.dart";
 import "dart:async";
 import 'package:todo_app/model/product.dart';
 import 'package:todo_app/components/round_icon_button.dart';
+import 'package:todo_app/infraestructure/Sqflite_ProductRepository.dart';
+import 'package:todo_app/data/database_helper.dart';
+
+SqfliteProductRepository productRepository = SqfliteProductRepository(DatabaseHelper.get);
 
 class Product_Detail extends StatefulWidget{
 
@@ -21,16 +23,15 @@ class Product_DetailState extends State<Product_Detail>{
 int quantity = 1;
 double price;
 double total;
+Product get_Product ;
 
 @override
 initState() {
   super.initState();
-   price = widget.detail.price ;
-   double _total = widget.detail.price * quantity;
-   total  = num.parse(_total.toStringAsFixed(2));
+  getProduct(widget.detail);
 }
 
-  
+ 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   PageController _controller;
@@ -50,9 +51,51 @@ initState() {
     );
   }
 
+  // Future<Product> getProduct( Product product ) {
+  //    return productRepository.getProduct(product);
+  //  }
+  
+ void  getProduct( Product product ) {
+     //Product result;
+     final productFuture = productRepository.getProduct(product);
+     productFuture.then((product) {
+       setState(() {
+       get_Product  = product;
+
+      if (get_Product != null)
+      {
+        quantity = get_Product.quantity;
+      }
+            
+      price = widget.detail.price ;
+      double _total = widget.detail.price * quantity;
+      total  = num.parse(_total.toStringAsFixed(2));
+
+       });
+     });
+     
+    
+   }
+
+
+  void add_To_Car( Product product ) {
+      
+    if (get_Product != null) {
+          debugPrint('update');
+          productRepository.update(product);
+    } else {
+          debugPrint('insert');
+          productRepository.insert(product);
+    }
+   Navigator.pop(context, true);
+
+    }
+    
+
   @override
   Widget build(BuildContext context) {
     
+   
     return SafeArea(
       bottom: false,
       top: false,
@@ -60,7 +103,7 @@ initState() {
           key: _scaffoldKey,
           backgroundColor: Colors.white,
           appBar: AppBar(
-            title: Text(widget.detail.title),
+            title: Text(widget.detail.name),
             elevation: 0.0,
           ),
           body: Container(
@@ -85,7 +128,7 @@ initState() {
                                 });
                               },
                               children: <Widget>[
-                                Image.network(widget.detail.image,height: 150.0,)
+                                Image.network(widget.detail.imageUrl,height: 150.0,)
                                 , Icon(Icons.hearing, size: 90.0, color: Colors.red) 
                                 ,Icon(Icons.tune, size: 90.0, color: Colors.red) 
                                 ,Icon(Icons.accessible, size: 90.0, color: Colors.red)
@@ -95,7 +138,6 @@ initState() {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              
                             ],
                           ),
                           Row(
@@ -185,6 +227,7 @@ initState() {
                       RaisedButton(
                         color: Colors.deepOrange,
                         onPressed: (){
+                          add_To_Car( widget.detail);
                           //model.addCart(widget.detail);
                           Timer(Duration(milliseconds: 500), (){
                             //showCartSnak(model.cartMsg,model.success);
@@ -200,5 +243,8 @@ initState() {
           ),
         ),
     );
+  
+   
+  
   }
 }

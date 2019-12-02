@@ -66,6 +66,12 @@ implements HomeScreenContract
                   child: Icon(Icons.shopping_cart),
                 ),
               ),
+            Positioned(
+                child: Container(
+                  //child: Text((model.cartListing.length > 0) ? model.cartListing.length.toString() : "",textAlign: TextAlign.center,style: TextStyle(color: Colors.orangeAccent,fontWeight: FontWeight.bold),),
+                  child: Text("200") ,
+                )
+            )
           ],
         ),
       ),

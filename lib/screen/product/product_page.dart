@@ -10,10 +10,9 @@ class ProductListPage extends StatefulWidget {
   State<StatefulWidget> createState() => ProductListPageState();
 }
 
-  
 class ProductListPageState extends State<ProductListPage> {
 
-  SqfliteUserRepository userRepository = SqfliteUserRepository(DatabaseHelper.get);
+  //SqfliteUserRepository userRepository = SqfliteUserRepository(DatabaseHelper.get);
 
   @override
   void initState() {
@@ -119,7 +118,7 @@ class ChoiceCard extends StatelessWidget {
                             child: GestureDetector(
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[Expanded(child: Container(child: Image.network(product.image,fit: BoxFit.contain)))],                              
+                                  children: <Widget>[Expanded(child: Container(child: Image.network(product.imageUrl,fit: BoxFit.contain)))],                              
                                 )
                             ,onTap: (){
                                 Navigator.push(context,MaterialPageRoute(builder: (context)=> Product_Detail( detail: product )));
@@ -129,7 +128,7 @@ class ChoiceCard extends StatelessWidget {
                         SizedBox(height: 10.0,),
                         Padding(
                           padding: EdgeInsets.only(left: 10.0),
-                          child: Text("${product.title}",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15.0),),
+                          child: Text("${product.name}",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15.0),),
                         ),
                         Padding(    
                           padding: EdgeInsets.only(left: 10.0),

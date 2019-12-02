@@ -1,39 +1,42 @@
 import 'package:todo_app/assembler/assembler.dart';
-import 'package:todo_app/model/user.dart';
+import 'package:todo_app/model/product.dart';
 
-class ProductAssembler implements Assembler<User>{
-  final tableName= 'User';
+class ProductAssembler implements Assembler<Product>{
+  final tableName= 'Product';
   final columnId = 'id';
-  final columnName = 'username';
-  final columnPassword = 'password';
-  final columnEmail = 'email';
+  final columnName = 'name';
+  final columnPrice = 'price';
+  final columnQuantity = 'quantity';
+  final columnImageUrl = 'imageUrl';
 
   @override
-  User fromMap(Map<String, dynamic > query) {
-    User user = User(query[columnName],query[columnPassword],query[columnEmail]);
-    return user;
+  Product fromMap(Map<String, dynamic > query) {
+    Product product = Product(query[columnName],query[columnPrice],query[columnQuantity],query[columnImageUrl]);
+    return product;
   }
 
   @override
-  Map<String, dynamic> toMap(User user) {
+  Map<String, dynamic> toMap(Product product) {
     return <String, dynamic>{
-      columnName: user.username,
-      columnPassword: user.password,
-      columnEmail: user.email
+      columnId: product.id,
+      columnName: product.name,
+      columnPrice: product.price,
+      columnQuantity: product.quantity,
+      columnImageUrl: product.imageUrl
     };
   }
 
-  User fromDbRow(dynamic row){
-    return User.withId(row[columnId],row[columnName],row[columnPassword],row[columnEmail]);
+  Product fromDbRow(dynamic row){
+    return Product.withId(row[columnId], row[columnName],row[columnPrice],row[columnQuantity],row[columnImageUrl]);
   }
 
   @override
-  List<User> fromList(result) {
-    List<User> users = List<User>();
+  List<Product> fromList(result) {
+    List<Product> products = List<Product>();
     var count = result.length;
     for (int i=0; i<count;i++){
-      users.add(fromDbRow(result[i]));
+      products.add(fromDbRow(result[i]));
     }
-    return users;
+    return products;
   }
 }
