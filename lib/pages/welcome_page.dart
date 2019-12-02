@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inkapharma/components/rounded_button.dart';
+import 'package:inkapharma/pages/google_login_page.dart';
 import 'package:inkapharma/pages/login_page.dart';
 import 'package:inkapharma/pages/registration_page.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -83,6 +84,13 @@ class _WelcomePageState extends State<WelcomePage>
               color: Colors.blueAccent,
               onPressed: () {
                 Navigator.pushNamed(context, RegistrationPage.id);
+              },
+            ),
+            RoundedButton(
+              title: 'Google Login',
+              color: Colors.blueAccent,
+              onPressed: () {
+                Navigator.pushNamed(context, GoogleLoginPage.id);
               },
             ),
           ],
