@@ -1,9 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:inkapharma/screen/login/login_screen.dart';
+import 'package:inkapharma/pages/login_page.dart';
+import 'package:inkapharma/pages/registration_page.dart';
+import 'package:inkapharma/pages/welcome_page.dart';
 import 'package:inkapharma/screen/home/home_screen.dart';
 
 final routes = {
-  '/login':         (BuildContext context) => new LoginScreen(),
-  '/home':         (BuildContext context) => new HomeScreen(),
-  '/' :          (BuildContext context) => new HomeScreen(),
+  '/' :          (context) => new WelcomePage(),
+  WelcomePage.id: (context) => WelcomePage(),
+  LoginPage.id: (context) => LoginPage(),
+  RegistrationPage.id: (context) => RegistrationPage(),
+  HomeScreen.id: (context) => HomeScreen(),
 };

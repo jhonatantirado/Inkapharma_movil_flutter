@@ -10,6 +10,7 @@ import 'package:inkapharma/screen/home/home_screen_page.dart';
 import 'package:inkapharma/screen/product/product_page.dart';
 
 class HomeScreen extends StatefulWidget{
+  static const String id = 'home_page';
   @override
   State<StatefulWidget> createState()=> HomeScreenState();
 }

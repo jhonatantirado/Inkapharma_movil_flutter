@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inkapharma/pages/welcome_page.dart';
 import 'package:inkapharma/routes.dart';
 import 'package:inkapharma/common/app_constants.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Roboto",
         primarySwatch: AppConstants.primaryColor,
       ),
+      initialRoute: WelcomePage.id,
       routes: routes,
     );
   }

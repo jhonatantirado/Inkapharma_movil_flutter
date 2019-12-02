@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "155905387626",
+    "firebase_url": "https://inkapharma-auth.firebaseio.com",
+    "project_id": "inkapharma-auth",
+    "storage_bucket": "inkapharma-auth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155905387626:android:b1b9bc7ac0f5ba0c74ee13",
+        "android_client_info": {
+          "package_name": "pe.edu.unmsm.ddm.inkapharma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "155905387626-7t703f2hn4rgkel9k80ajtg149h1kn8e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_i5y9x4QJxCTgtVJw8nKyhtfu9ZFdTqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "155905387626-7t703f2hn4rgkel9k80ajtg149h1kn8e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
