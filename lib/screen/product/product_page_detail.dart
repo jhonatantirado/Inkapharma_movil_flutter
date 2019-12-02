@@ -16,7 +16,6 @@ class Product_Detail extends StatefulWidget{
 
 class Product_DetailState extends State<Product_Detail>{
 
-
 int quantity = 1;
 double price;
 double total;
@@ -48,23 +47,6 @@ initState() {
       ),
     );
   }
-
-  /*showSnak(bool flag,String name){
-    _scaffoldKey.currentState.showSnackBar(
-        SnackBar(
-          content: Text(flag ? "${name} added in favourite list" : "${name} removed from favourite list"),
-          duration: Duration(seconds: 2),
-        ));
-  }*/
-
-  /*showCartSnak(String msg,bool flag){
-    _scaffoldKey.currentState.showSnackBar(
-        SnackBar(
-          content: Text(msg,style: TextStyle(color: Colors.white),),
-          backgroundColor: (flag) ? Colors.green : Colors.red[500] ,
-          duration: Duration(seconds: 2),
-        ));
-  }*/
 
   @override
   Widget build(BuildContext context) {
