@@ -1,3 +1,4 @@
+import 'package:inkapharma/pages/facebook_login_page.dart';
 import 'package:inkapharma/pages/google_login_page.dart';
 import 'package:inkapharma/pages/login_page.dart';
 import 'package:inkapharma/pages/registration_page.dart';
@@ -12,5 +13,6 @@ final routes = {
   RegistrationPage.id: (context) => RegistrationPage(),
   HomeScreen.id: (context) => HomeScreen(),
   GoogleLoginPage.id: (context) => GoogleLoginPage(),
-  TwitterLoginPage.id: (context) => TwitterLoginPage()
+  TwitterLoginPage.id: (context) => TwitterLoginPage(),
+  FacebookLoginPage.id: (context) => FacebookLoginPage()
 };

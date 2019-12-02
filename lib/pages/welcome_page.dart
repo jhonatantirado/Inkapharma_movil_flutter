@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inkapharma/components/rounded_button.dart';
+import 'package:inkapharma/pages/facebook_login_page.dart';
 import 'package:inkapharma/pages/google_login_page.dart';
 import 'package:inkapharma/pages/login_page.dart';
 import 'package:inkapharma/pages/registration_page.dart';
@@ -99,6 +100,13 @@ class _WelcomePageState extends State<WelcomePage>
               color: Colors.blueAccent,
               onPressed: () {
                 Navigator.pushNamed(context, TwitterLoginPage.id);
+              },
+            ),
+            RoundedButton(
+              title: 'Facebook Login',
+              color: Colors.blueAccent,
+              onPressed: () {
+                Navigator.pushNamed(context, FacebookLoginPage.id);
               },
             ),
           ],
