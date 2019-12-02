@@ -1,7 +1,5 @@
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_app/model/choice.dart';
-import 'package:todo_app/components/round_icon_button.dart';
+import 'package:inkapharma/model/choice.dart';
 
 const List<Choice> choices = const <Choice>[
   const Choice( quantity: 1, price: 10.0, title: 'Product1', icon: Icons.directions_car, image: "https://www.netmeds.com/pub/media/catalog/product/cache/image/240x240/57453768b1c789093496adaa9e415a9d/a/c/accu-chek-instant-s-test-strips-50-s-835774208.jpg"),

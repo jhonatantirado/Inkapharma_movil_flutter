@@ -1,5 +1,4 @@
 import 'package:inkapharma/data/database_helper.dart';
-
 import 'infraestructure/Sqflite_UserRepository.dart';
 
 enum AuthState { LOGGED_IN, LOGGED_OUT}
