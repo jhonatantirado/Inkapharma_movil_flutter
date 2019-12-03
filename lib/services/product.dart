@@ -3,6 +3,11 @@ import 'dart:convert';
 import 'package:todo_app/utils/network_utils.dart';
 import 'package:todo_app/model/product.dart';
 import 'package:todo_app/services/webservice.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
+import 'dart:async';
+import 'dart:convert';
+
 
 const apiKey = '0f6dbc02cee2cd16bb57aeda2d9e1069';
 const openWeatherMapURL = 'https://dycsw-inkapharmacy-netcore-api-anxious-echidna.cfapps.io/api/Products';
@@ -24,63 +29,58 @@ class ProductModel {
   }
 
 
-
-
-//  Future<dynamic> getProducts( {int page: 0, int size:50} ) async {
-//      var url = '$openWeatherMapURL?page=$page&size=$size';
-//      NetworkUtil networkHelper = NetworkUtil();
-//      var weatherData = await networkHelper.get(url);
-//      return weatherData;
-//    }
-
-
-
-  /*Future<dynamic> getCityWeather(String cityName) async {
-    var url = '$openWeatherMapURL?q=$cityName&appid=$apiKey&units=metric';
-    NetworkUtil networkHelper = NetworkUtil();
-    var weatherData = await networkHelper.get(url);
-    return weatherData;
+  Map toMap() {
+    var map = new Map<String, dynamic>();
+    map["customerId"] = 2;
+    map["details"] = 3;
+    [map["customerId"] ,2];
+    return map;
   }
 
-  Future<dynamic> getLocationWeather() async {
-    Location location = Location();
-    await location.getCurrentLocation();
-    String url = '$openWeatherMapURL?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric';
-    NetworkUtil networkHelper = NetworkUtil();
-    var weatherData = await networkHelper.get(url);
-    return weatherData;
-  }
+  Future<void> createPost(/*String url, {Map body}*/) async {
 
-  String getWeatherIcon(int condition) {
-    if (condition < 300) {
-      return '🌩';
-    } else if (condition < 400) {
-      return '🌧';
-    } else if (condition < 600) {
-      return '☔️';
-    } else if (condition < 700) {
-      return '☃️';
-    } else if (condition < 800) {
-      return '🌫';
-    } else if (condition == 800) {
-      return '☀️';
-    } else if (condition <= 804) {
-      return '☁️';
-    } else {
-      return '🤷‍';
+  String url = 'https://inkafarma-axon.cfapps.io/sales';
+
+ var items = [];
+  var item = {
+    "productId": 1,
+    "quantity": 20,
+    "price": 5,
+    "currency": "PEN",
+    "status": 1
+  };
+  var item2 = {
+    "productId": 2,
+    "quantity": 50,
+    "price": 12,
+    "currency": "PEN",
+    "status": 1
+  };
+
+  items.add(item);
+  items.add(item2);
+
+// create params
+  var body = {
+      "customerId": 2,
+      "details": items
+      };
+
+
+  return http.post(url, body: body).then((http.Response response) {
+    final int statusCode = response.statusCode;
+    if (statusCode < 200 || statusCode > 400 || json == null) {
+      throw new Exception("Error while fetching data");
     }
-  }
-
-  String getMessage(int temp) {
-    if (temp > 25) {
-      return 'It\'s 🍦 time';
-    } else if (temp > 20) {
-      return 'Time for shorts and 👕';
-    } else if (temp < 10) {
-      return 'You\'ll need 🧣 and 🧤';
-    } else {
-      return 'Bring a 🧥 just in case';
+    else
+    {
+      var ok = json.decode(response.body);
     }
-  }*/
+    //return Post.fromJson(json.decode(response.body));
+  });
+}
+
+
+  
 
 }

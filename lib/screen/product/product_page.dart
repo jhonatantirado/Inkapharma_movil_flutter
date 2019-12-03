@@ -4,6 +4,7 @@ import 'package:todo_app/data/database_helper.dart';
 import 'package:todo_app/services/webservice.dart';
 import 'package:todo_app/screen/product/product_page_detail.dart';
 import 'package:todo_app/model/product.dart';
+import 'package:todo_app/services/product.dart';
 
 class ProductListPage extends StatefulWidget {
   @override
@@ -18,13 +19,16 @@ class ProductListPageState extends State<ProductListPage> {
   void initState() {
     super.initState();
     _populateProducts(); 
+    ProductModel b = ProductModel();
+     b.createPost();
+
   }
 
   void _populateProducts(){
     
-    Webservice().load(Product.all).then((choices) => {
+    Webservice().load(Product.all).then((products) => {
       setState(() => {
-        _products  = choices
+        _products  = products
       })
     });
   }

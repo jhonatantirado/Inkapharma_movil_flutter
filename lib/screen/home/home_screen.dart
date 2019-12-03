@@ -112,15 +112,7 @@ implements HomeScreenContract
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.productHunt),
             title: Text('Productos'),
-          ),
-          /*BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.graduationCap),
-            title: Text('Venta'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.graduationCap),
-            title: Text('Usuarios'),
-          )*/
+          )
         ],
         onTap: (index) {
           setState(() {
@@ -131,13 +123,7 @@ implements HomeScreenContract
                 break;
               case 1:
                 content = ProductListPage();
-                break;
-              /*case 2:
-                content = UserListPage();
-                break;
-              case 3:
-                content = UserListPage();
-                break;*/
+                break;              
             }
           });
         },
