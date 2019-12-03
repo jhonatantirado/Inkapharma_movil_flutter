@@ -22,13 +22,30 @@ implements HomeScreenContract
   String _homeText;
   Widget content = UserListPage();
   var _currentIndex = 0;
-
+  int total = 0;
 
   HomeScreenState(){
     _presenter = new HomeScreenPresenter(this);
     _presenter.getUserInfo();
 
   }
+
+  @override
+  initState() {
+  super.initState();
+  getCarList();
+  }
+
+ void  getCarList( ) {
+     
+     final productFuture = productRepository.getCount();
+     productFuture.then((count) {
+       setState(() {
+        total  = count;
+       });
+     });
+   }
+
 
   @override
   Widget build(BuildContext context){
@@ -56,22 +73,26 @@ implements HomeScreenContract
                 child: Icon(FontAwesomeIcons.signInAlt,size: AppConstants.iconSize, color: Colors.white),
               ),
               onTap: onLogout,
-            ),
-            Padding(
-                padding: EdgeInsets.all(10.0),
+            ),  
+            Container(
+                  margin: const EdgeInsets.all(15.0),
+                  width: 1,
+                  height: 1,
+                  child: Text((total > 0) ? total.toString() : "",
+                                textAlign:TextAlign.center
+                                ,style: TextStyle(fontSize:18.0,color: Colors.redAccent,fontWeight:FontWeight.bold))
+                  //child: Text("200") ,
+              )
+           ,Padding(
+                padding: EdgeInsets.only(right:5.0),
                 child: InkResponse(
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>Cart()));
                   },
                   child: Icon(Icons.shopping_cart),
                 ),
-              ),
-            Positioned(
-                child: Container(
-                  //child: Text((model.cartListing.length > 0) ? model.cartListing.length.toString() : "",textAlign: TextAlign.center,style: TextStyle(color: Colors.orangeAccent,fontWeight: FontWeight.bold),),
-                  child: Text("200") ,
-                )
-            )
+              )
+            ,          
           ],
         ),
       ),
