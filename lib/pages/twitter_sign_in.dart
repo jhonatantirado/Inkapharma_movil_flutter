@@ -26,14 +26,13 @@ Future<String> signInWithTwitter() async {
 
       final AuthResult authResult = await _auth.signInWithCredential(credential);
       final FirebaseUser user = authResult.user;
+
       print("twitter sign in " + user.toString());
 
-      assert(user.email != null);
       assert(user.displayName != null);
       assert(user.photoUrl != null);
 
       name = user.displayName;
-      email = user.email;
       imageUrl = user.photoUrl;
 
       if (name.contains(" ")) {

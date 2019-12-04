@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "155905387626-0sbspj42silb9qsonpeim9p5u749gb5n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pe.edu.unmsm.ddm.inkapharma",
+            "certificate_hash": "b90d0368484a97173fb16c1e4397242ffd7c5a48"
+          }
+        },
+        {
           "client_id": "155905387626-7t703f2hn4rgkel9k80ajtg149h1kn8e.apps.googleusercontent.com",
           "client_type": 3
         }

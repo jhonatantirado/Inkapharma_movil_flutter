@@ -42,12 +42,12 @@ Future<String> signInWithGoogle() async {
   final FirebaseUser user = authResult.user;
 
   // Checking if email and name is null
-  assert(user.email != null);
+  assert(user.providerData[1].email != null);
   assert(user.displayName != null);
   assert(user.photoUrl != null);
 
   name = user.displayName;
-  email = user.email;
+  email = user.providerData[1].email;
   imageUrl = user.photoUrl;
 
   // Only taking the first part of the name, i.e., First Name
