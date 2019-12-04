@@ -19,8 +19,8 @@ class ProductListPageState extends State<ProductListPage> {
   void initState() {
     super.initState();
     _populateProducts(); 
-    ProductModel b = ProductModel();
-     b.createPost();
+    // ProductModel b = ProductModel();
+    //  b.createPost();
 
   }
 

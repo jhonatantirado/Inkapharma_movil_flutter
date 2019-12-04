@@ -50,7 +50,7 @@ class DatabaseHelper{
 
   initDb() async {
     io.Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, "mainProduct2.db");
+    String path = join(documentsDirectory.path, "mainProduct3.db");
     int version = migrationScripts.length <= 0 ? 1 : migrationScripts.length + 1;
     var theDb = await openDatabase(path, version: version, onCreate: _onCreate, 
     onUpgrade: _onUpgrade, onDowngrade: _onDowngrade);

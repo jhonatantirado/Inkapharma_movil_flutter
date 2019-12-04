@@ -32,8 +32,8 @@ implements HomeScreenContract
 
   @override
   initState() {
-  super.initState();
-  getCarList();
+    super.initState();
+    // getCarList();
   }
 
  void  getCarList( ) {
@@ -49,6 +49,9 @@ implements HomeScreenContract
 
   @override
   Widget build(BuildContext context){
+
+   getCarList();
+
     return  Scaffold(
       drawer: Drawer(),
       appBar: PreferredSize(

@@ -1,10 +1,14 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:todo_app/model/product.dart';
 import 'package:todo_app/infraestructure/Sqflite_ProductRepository.dart';
 import 'package:todo_app/data/database_helper.dart';
 
 SqfliteProductRepository productRepository = SqfliteProductRepository(DatabaseHelper.get);
 
+ double totalSale;
  List<Product> products = const <Product>[
   ];
 
@@ -42,10 +46,32 @@ void getData() {
       });
   }
 
+ void remove_Product( Product product ) {
+        productRepository.delete(product);
+        getData();
+  }
+
 
   @override
   Widget build(BuildContext context) {
-  
+
+      setState(() {
+
+        final totalSaleFuture = productRepository.getTotalSale();
+        totalSaleFuture.then((result) {
+        setState(() {
+          totalSale = num.parse( result.toStringAsFixed(2)) ;
+        });
+      });
+
+        // products.forEach((n) => n.price + totalSale );
+         //var sum = [1, 2, 3].reduce((a, b) => a + b);
+         //products.reduce((a, b) => 1 + 2);
+        // double totalSale = 0;
+        // products.forEach((n) => n.price + totalSale );
+         
+      });
+
     return Scaffold(
       appBar:AppBar(
         elevation: 0.0,
@@ -67,8 +93,66 @@ void getData() {
               children: products.map((d)=>generateCart(d)).toList(),
             ),
         ),
+        bottomNavigationBar: _indexBottom()
       );
   }
+
+Widget _indexBottom() { 
+  return Container(
+      height: 56,
+      margin: EdgeInsets.symmetric(vertical: 24, horizontal: 12),
+      child: Row(
+        children: <Widget>[
+          Container(
+            width: 200,
+            color: Colors.blueAccent,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: 
+              <Widget>
+              [//Icon(Icons.chat, color: Colors.white), 
+               Text("Total: ${totalSale.toString()}", style: TextStyle(color: Colors.white))
+              ],
+            ),
+          ),
+          Expanded(
+            child: Container(
+              alignment: Alignment.center,
+              color: Colors.red,
+              child: Text("BUY NOW", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+            ),
+          ),
+        ],
+      )
+    );
+}
+
+//  Widget _indexBottom() { 
+//      return Padding(
+//        padding: EdgeInsets.all(5.0),
+//        child: Container(
+//          decoration: BoxDecoration(
+//            color: Colors.white12,
+//                   border: Border(
+//                        bottom: BorderSide(color: Colors.grey[50],width: 10.0),
+//                        top: BorderSide(color: Colors.grey[50],width: 1.0),)
+//          )));      
+//    }
+
+  //  Widget _indexBottom() => BottomNavigationBar(
+  //      type: BottomNavigationBarType.fixed,
+  //      items: <BottomNavigationBarItem>[
+  //          BottomNavigationBarItem(
+  //            icon: Icon(FontAwesomeIcons.graduationCap),
+  //            title: Text('Comprar'),
+  //          ),
+          
+  //        ],
+  //        onTap: (index) {
+  //          setState(() {
+  //            });
+  //            });        
+  
 
   Widget generateCart(Product d){
     return Padding(
@@ -103,13 +187,12 @@ void getData() {
                     Row(
                       children: <Widget>[
                         Expanded(child: Text(d.name,style: TextStyle(fontWeight: FontWeight.w600,fontSize:15.0),),),
-                        Expanded(child: Text("PriceA ${d.price.toString()}",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15.0),),),
-                        //Expanded(child: Text("PriceA ${d.price.toString()}",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 13.0),),),
+                        Expanded(child: Text("SubTotal ${  (d.quantity*d.price).toStringAsFixed(2)}",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 13.0),),),
                         Container(
                           alignment: Alignment.bottomRight,
                           child:InkResponse(
                                   onTap: (){
-                                    //model.removeCart(d);
+                                    remove_Product(d);//model.removeCart(d);
                                   },
                                   child: Padding(padding: EdgeInsets.only(right: 10.0),child: Icon(Icons.remove_circle,color: Colors.red,),
                                   )
@@ -120,24 +203,7 @@ void getData() {
                     Text("Price ${d.price.toString()}",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 13.0))
                     ,Row(
                       children: <Widget>[
-                    SizedBox(height: 5.0,),
-                    /*,Container(
-                          alignment: Alignment.bottomRight,
-                          child:InkResponse(
-                                  onTap: (){/*model.removeCart(d);*/},
-                                  child: Padding(padding: EdgeInsets.only(right: 10.0),child: Icon(Icons.add,color: Colors.blue,))
-                              ) ,
-                        )*/
-                    SizedBox(width: 10.0,)
-                    ,Text("quantity.toString(),")
-                    ,SizedBox(width: 10.0,)
-                    /*,Container(
-                      alignment: Alignment.bottomRight,
-                      child:InkResponse(
-                              onTap: (){/*model.removeCart(d);*/},
-                              child: Padding(padding: EdgeInsets.only(right: 10.0),child: Icon(Icons.remove,color: Colors.blue,))
-                          ) ,
-                      )*/
+                        Text("Quantity ${d.quantity.toString()}")
                     ])
                   ],
                 ),

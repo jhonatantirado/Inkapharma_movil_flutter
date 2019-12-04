@@ -6,4 +6,6 @@ abstract class ProductRepository {
   Future<int> delete(Product product);
   Future<Product> getProduct(Product product);
   Future<List<Product>> getList();
+  Future<int> getCount();
+   Future<double> getTotalSale();
 }

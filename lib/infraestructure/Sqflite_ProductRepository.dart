@@ -58,6 +58,7 @@ class SqfliteProductRepository implements ProductRepository {
     return product;
   }
 
+  @override
   Future<int> getCount() async {
     final db = await databaseMigration.db;
     var result = Sqflite.firstIntValue(
@@ -65,4 +66,19 @@ class SqfliteProductRepository implements ProductRepository {
     );
     return result;
   }
+
+  @override
+   Future<double> getTotalSale() async{
+    final db = await databaseMigration.db;
+    List<Map> result = await db.rawQuery("SELECT sum( price * quantity ) as total FROM Product ");
+    if (result.isNotEmpty){
+      var element = result.elementAt(0);
+      return element["total"];
+    } else{
+      return 0;
+    }
+  }
+
+
 }
+

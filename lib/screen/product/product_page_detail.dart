@@ -51,10 +51,6 @@ initState() {
     );
   }
 
-  // Future<Product> getProduct( Product product ) {
-  //    return productRepository.getProduct(product);
-  //  }
-  
  void  getProduct( Product product ) {
      //Product result;
      final productFuture = productRepository.getProduct(product);
@@ -192,6 +188,7 @@ initState() {
                               quantity == 1 ?  1 : quantity--;
                               double _total = widget.detail.price * quantity;
                               total  = num.parse(_total.toStringAsFixed(2));
+                              widget.detail.quantity = quantity;
                             });
                           },
                         ),
@@ -209,6 +206,7 @@ initState() {
                               quantity++;
                               double _total = widget.detail.price * quantity;
                               total = num.parse(_total.toStringAsFixed(2));
+                              widget.detail.quantity = quantity;
                             });
                           },
                         ),
