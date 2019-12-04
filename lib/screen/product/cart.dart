@@ -1,7 +1,4 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:todo_app/model/product.dart';
 import 'package:todo_app/infraestructure/Sqflite_ProductRepository.dart';
 import 'package:todo_app/data/database_helper.dart';
@@ -28,13 +25,10 @@ class Cart extends StatefulWidget{
 
 class CartState extends State<Cart>{
     
-  // List<Product> products;
-
   @override
   initState() {
     super.initState();
     getData();
-    //getProduct(widget.detail);
   }
 
 void getData() {
@@ -51,6 +45,11 @@ void getData() {
         getData();
   }
 
+  void buy_Now() {
+        // productRepository.delete(product);
+        // getData();
+        Navigator.pop(context, true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,12 +63,6 @@ void getData() {
         });
       });
 
-        // products.forEach((n) => n.price + totalSale );
-         //var sum = [1, 2, 3].reduce((a, b) => a + b);
-         //products.reduce((a, b) => 1 + 2);
-        // double totalSale = 0;
-        // products.forEach((n) => n.price + totalSale );
-         
       });
 
     return Scaffold(
@@ -119,40 +112,22 @@ Widget _indexBottom() {
             child: Container(
               alignment: Alignment.center,
               color: Colors.red,
-              child: Text("BUY NOW", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-            ),
-          ),
+              //child: Text("BUY NOW", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+              child:InkResponse(
+                    onTap: (){
+                      buy_Now();
+                      //remove_Product(d);
+                    },
+                    //child: Padding(padding: EdgeInsets.only(right: 10.0),child: Icon(Icons.remove_circle,color: Colors.red,),
+                    child: Text("BUY NOW", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                    )
+              )
+            )         
         ],
       )
     );
 }
 
-//  Widget _indexBottom() { 
-//      return Padding(
-//        padding: EdgeInsets.all(5.0),
-//        child: Container(
-//          decoration: BoxDecoration(
-//            color: Colors.white12,
-//                   border: Border(
-//                        bottom: BorderSide(color: Colors.grey[50],width: 10.0),
-//                        top: BorderSide(color: Colors.grey[50],width: 1.0),)
-//          )));      
-//    }
-
-  //  Widget _indexBottom() => BottomNavigationBar(
-  //      type: BottomNavigationBarType.fixed,
-  //      items: <BottomNavigationBarItem>[
-  //          BottomNavigationBarItem(
-  //            icon: Icon(FontAwesomeIcons.graduationCap),
-  //            title: Text('Comprar'),
-  //          ),
-          
-  //        ],
-  //        onTap: (index) {
-  //          setState(() {
-  //            });
-  //            });        
-  
 
   Widget generateCart(Product d){
     return Padding(
@@ -192,7 +167,7 @@ Widget _indexBottom() {
                           alignment: Alignment.bottomRight,
                           child:InkResponse(
                                   onTap: (){
-                                    remove_Product(d);//model.removeCart(d);
+                                    remove_Product(d);
                                   },
                                   child: Padding(padding: EdgeInsets.only(right: 10.0),child: Icon(Icons.remove_circle,color: Colors.red,),
                                   )
