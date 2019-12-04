@@ -1,4 +1,4 @@
-import 'package:todo_app/model/product.dart';
+import 'package:inkapharma/model/product.dart';
 
 abstract class ProductRepository {
   Future<int> insert(Product product);

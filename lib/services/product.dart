@@ -1,13 +1,9 @@
 //import 'package:todo_app/services/location.dart';
 import 'dart:convert';
-import 'package:todo_app/utils/network_utils.dart';
-import 'package:todo_app/model/product.dart';
-import 'package:todo_app/services/webservice.dart';
+import 'package:inkapharma/model/product.dart';
+import 'package:inkapharma/services/webservice.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'dart:async';
-import 'dart:convert';
-
 
 const apiKey = '0f6dbc02cee2cd16bb57aeda2d9e1069';
 const openWeatherMapURL = 'https://dycsw-inkapharmacy-netcore-api-anxious-echidna.cfapps.io/api/Products';

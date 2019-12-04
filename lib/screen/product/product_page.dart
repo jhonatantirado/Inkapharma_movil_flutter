@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/infraestructure/Sqflite_UserRepository.dart';
-import 'package:todo_app/data/database_helper.dart';
-import 'package:todo_app/services/webservice.dart';
-import 'package:todo_app/screen/product/product_page_detail.dart';
-import 'package:todo_app/model/product.dart';
-import 'package:todo_app/services/product.dart';
+import 'package:inkapharma/services/webservice.dart';
+import 'package:inkapharma/screen/product/product_page_detail.dart';
+import 'package:inkapharma/model/product.dart';
+import 'package:inkapharma/services/product.dart';
 
 class ProductListPage extends StatefulWidget {
   @override

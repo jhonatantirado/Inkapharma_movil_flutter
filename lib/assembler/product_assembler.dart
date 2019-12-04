@@ -1,5 +1,5 @@
-import 'package:todo_app/assembler/assembler.dart';
-import 'package:todo_app/model/product.dart';
+import 'package:inkapharma/assembler/assembler.dart';
+import 'package:inkapharma/model/product.dart';
 
 class ProductAssembler implements Assembler<Product>{
   final tableName= 'Product';

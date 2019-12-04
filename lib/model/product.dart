@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:todo_app/services/webservice.dart';
-import 'package:todo_app/common/app_constants.dart';
+import 'package:inkapharma/services/webservice.dart';
+import 'package:inkapharma/common/app_constants.dart';
 
 class Product {
   

@@ -1,10 +1,10 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "package:flutter/material.dart";
 import "dart:async";
-import 'package:todo_app/model/product.dart';
-import 'package:todo_app/components/round_icon_button.dart';
-import 'package:todo_app/infraestructure/Sqflite_ProductRepository.dart';
-import 'package:todo_app/data/database_helper.dart';
+import 'package:inkapharma/model/product.dart';
+import 'package:inkapharma/components/round_icon_button.dart';
+import 'package:inkapharma/infraestructure/Sqflite_ProductRepository.dart';
+import 'package:inkapharma/data/database_helper.dart';
 
 SqfliteProductRepository productRepository = SqfliteProductRepository(DatabaseHelper.get);
 

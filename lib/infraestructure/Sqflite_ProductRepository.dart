@@ -1,7 +1,7 @@
-import 'package:todo_app/assembler/product_assembler.dart';
-import 'package:todo_app/infraestructure/ProductRepository.dart';
-import 'package:todo_app/data/database_helper.dart';
-import 'package:todo_app/model/product.dart';
+import 'package:inkapharma/assembler/product_assembler.dart';
+import 'package:inkapharma/infraestructure/ProductRepository.dart';
+import 'package:inkapharma/data/database_helper.dart';
+import 'package:inkapharma/model/product.dart';
 import 'package:sqflite/sqflite.dart';
 
 class SqfliteProductRepository implements ProductRepository {
