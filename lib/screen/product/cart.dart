@@ -46,8 +46,9 @@ void getData() {
   }
 
   void buy_Now() {
-        // productRepository.delete(product);
-        // getData();
+        
+        //productRepository.deleteAllCarList();
+        
         Navigator.pop(context, true);
   }
 

@@ -8,4 +8,6 @@ abstract class ProductRepository {
   Future<List<Product>> getList();
   Future<int> getCount();
    Future<double> getTotalSale();
+   Future<int> deleteAllCarList();
+   
 }

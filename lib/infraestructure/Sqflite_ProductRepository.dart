@@ -79,6 +79,12 @@ class SqfliteProductRepository implements ProductRepository {
     }
   }
 
-
+ @override
+  Future<int> deleteAllCarList() async {
+    final db = await databaseMigration.db;
+    int result = await db.delete(assembler.tableName);
+    return result;
+  }
+  
 }
 
