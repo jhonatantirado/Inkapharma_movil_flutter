@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
+final FirebaseAuth _auth = FirebaseAuth.instance;
 final facebookLogin = FacebookLogin();
 
 Future<String> signInWithFacebook() async {
@@ -7,16 +11,23 @@ Future<String> signInWithFacebook() async {
   switch (result.status) {
     case FacebookLoginStatus.loggedIn:
       print('Logged in');
-      //_sendTokenToServer(result.accessToken.token);
-      //_showLoggedInUI();
+      final token = result.accessToken.token;
+      final graphResponse = await http.get(
+            'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email&access_token=${token}');
+      final profile = json.decode(graphResponse.body);
+      print(profile);
+
+      AuthCredential credential = FacebookAuthProvider.getCredential(accessToken: token);
+      AuthResult signInResult = await _auth.signInWithCredential(credential);
+      FirebaseUser fbUser = signInResult.user;
+      print (fbUser);
+
       break;
     case FacebookLoginStatus.cancelledByUser:
       print('Cancelled');
-      //_showCancelledMessage();
       break;
     case FacebookLoginStatus.error:
       print('Error');
-      //_showErrorOnUI(result.errorMessage);
       break;
   }
 

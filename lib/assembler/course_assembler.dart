@@ -12,7 +12,7 @@ class CourseAssembler implements Assembler<Course> {
 
   @override
   Course fromMap(Map<String, dynamic> query) {
-    Course course = Course(query[columnId], query[columnSemester], query[columnCredits], query[columnResearch], query[columnDescription]);
+    Course course = Course(query[columnName], query[columnSemester], query[columnCredits], query[columnResearch], query[columnDescription]);
     return course;
   }
 

@@ -23,15 +23,15 @@ class DatabaseHelper{
     '''
   ];
 
-  final List<String> initScriptsCourse = [
+  final List<String> initScriptsProduct = [
     '''
-    CREATE TABLE courses(
-      id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL,
-      description TEXT NULL,
-      semester INTEGER NOT NULL,
-      credits INTEGER NOT NULL,
-      research INTEGER NOT NULL DEFAULT 0
+    CREATE TABLE Product(
+      id INTEGER NOT NULL PRIMARY KEY,
+      name TEXT,
+      price REAL,
+      quantity INTEGER ,
+      imageUrl TEXT,
+      subTotal REAL
     );
     '''
   ];
@@ -50,7 +50,7 @@ class DatabaseHelper{
 
   initDb() async {
     io.Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, "main1.db");
+    String path = join(documentsDirectory.path, "mainProduct2.db");
     int version = migrationScripts.length <= 0 ? 1 : migrationScripts.length + 1;
     var theDb = await openDatabase(path, version: version, onCreate: _onCreate, 
     onUpgrade: _onUpgrade, onDowngrade: _onDowngrade);
@@ -59,7 +59,7 @@ class DatabaseHelper{
 
   void _onCreate(Database db, int version) async{
     initScripts.forEach((script) async => await db.execute(script));
-    initScriptsCourse.forEach((script) async => await db.execute(script));
+    initScriptsProduct.forEach((script) async => await db.execute(script));
     print("Created tables");
     await db.rawInsert('INSERT INTO User (username, password, email) VALUES("admin", "123456","admin@gmail.com")');
   }
