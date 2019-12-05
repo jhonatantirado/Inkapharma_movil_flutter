@@ -2,24 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:inkapharma/services/webservice.dart';
 import 'package:inkapharma/screen/product/product_page_detail.dart';
 import 'package:inkapharma/model/product.dart';
-import 'package:inkapharma/services/product.dart';
 
 class ProductListPage extends StatefulWidget {
+  static const String id = 'product_page';
   @override
   State<StatefulWidget> createState() => ProductListPageState();
 }
 
 class ProductListPageState extends State<ProductListPage> {
 
-  //SqfliteUserRepository userRepository = SqfliteUserRepository(DatabaseHelper.get);
-
   @override
   void initState() {
     super.initState();
     _populateProducts(); 
-    ProductModel b = ProductModel();
-     b.createPost();
-
   }
 
   void _populateProducts(){
