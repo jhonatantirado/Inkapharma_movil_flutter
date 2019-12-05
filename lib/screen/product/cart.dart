@@ -44,7 +44,7 @@ void getData() {
 
  Future<String> createSale(String url, {Map body}) async {
   
-  return http.post(
+return http.post(
       url
     , headers: {
       "Accept": "application/json",
@@ -73,19 +73,22 @@ void getData() {
     void buy_Now() async {
         
         List<SaleOrderDetail>  newDetails = new List<SaleOrderDetail>(); 
-
         products.forEach((f)=> 
           newDetails.add(new SaleOrderDetail(detailId: "", saleId: "", status: 1, price: f.price, productId: f.id , currency: "PEN", quantity: f.quantity))
          );
 
+
         Sale newSale = new Sale(customerId: 2, details: newDetails);
+
 
         Map newMap =newSale.toMap();
         String saleId = await createSale(CREATE_POST_URL, body: newMap);
         print(saleId);
 
-
         productRepository.deleteAllCarList();
+        
+        // Navigator.pushNamed(context, "/product");
+        //Navigator.pushNamed(context, "/product");
         Navigator.pop(context, true);
         // MaterialPageRoute(builder: (context) =>  ProductListPage());
   }
