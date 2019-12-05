@@ -2,35 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:inkapharma/model/product.dart';
 import 'package:inkapharma/infraestructure/Sqflite_ProductRepository.dart';
 import 'package:inkapharma/data/database_helper.dart';
+import 'package:http/http.dart' as http;
+import 'package:inkapharma/model/SaleOrderDetail.dart';
+import 'dart:async';
+import 'dart:convert';
+
 
 SqfliteProductRepository productRepository = SqfliteProductRepository(DatabaseHelper.get);
 
- List<Product> products = const <Product>[
-  ];
+ double  _opacity = 1;
+ double totalSale;
+ List<Product> products = const <Product>[];
 
-
-class Cart extends StatefulWidget{
-  static final String route = "Cart-route";
-
-
+ class Cart extends StatefulWidget{
+ 
   @override
-  State<StatefulWidget> createState() {
-    
-    
-    return CartState();
-  }
+  State<StatefulWidget> createState() => CartState();
+   
 }
 
 
 class CartState extends State<Cart>{
-    
-  // List<Product> products;
+
+  static final CREATE_POST_URL = 'https://inkafarma-axon.cfapps.io/sales';
 
   @override
   initState() {
     super.initState();
     getData();
-    //getProduct(widget.detail);
   }
 
 void getData() {
@@ -40,12 +39,67 @@ void getData() {
           products = productList;
         });
       });
-  }
+}
 
+Future<String> createSale(String url, {Map body}) async {
+  
+return http.post(
+      url
+    , headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"}
+    , body: json.encode(body))
+    .then((http.Response response) {
+
+      final int statusCode = response.statusCode;
+      print(response.body);
+      if (statusCode < 200 || statusCode > 400 || json == null) {
+        throw new Exception("Error while fetching data");
+      }
+
+    return response.body;
+    });
+    //return 'ok';
+}
+
+void remove_Product( Product product ) {
+  productRepository.delete(product);
+  getData();
+}
+
+  void buy_Now() async {
+        
+        List<SaleOrderDetail>  newDetails = new List<SaleOrderDetail>(); 
+        products.forEach((f)=> 
+          newDetails.add(new SaleOrderDetail(detailId: "", saleId: "", status: 1, price: f.price, productId: f.id , currency: "PEN", quantity: f.quantity))
+         );
+
+
+        Sale newSale = new Sale(customerId: 2, details: newDetails);
+
+
+        Map newMap =newSale.toMap();
+        String saleId = await createSale(CREATE_POST_URL, body: newMap);
+        print(saleId);
+
+        productRepository.deleteAllCarList();
+        
+        Navigator.pop(context, true);
+  }
 
   @override
   Widget build(BuildContext context) {
-  
+
+      setState(() {
+        final totalSaleFuture = productRepository.getTotalSale();
+        totalSaleFuture.then((result) {
+        setState(() {
+          totalSale = result == null ? 0: num.parse( result.toStringAsFixed(2)) ;
+          _opacity = totalSale > 0 ? 1: 0;
+        });
+      });
+      });
+
     return Scaffold(
       appBar:AppBar(
         elevation: 0.0,
@@ -67,8 +121,45 @@ void getData() {
               children: products.map((d)=>generateCart(d)).toList(),
             ),
         ),
+        bottomNavigationBar: _indexBottom()
       );
   }
+
+Widget _indexBottom() { 
+  return  Opacity(opacity: _opacity,
+      child: Container(
+      height: 56,
+      margin: EdgeInsets.symmetric(vertical: 24, horizontal: 12),
+      child: Row(
+        children: <Widget>[
+          Container(
+            width: 200,
+            color: Colors.blueAccent,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: 
+              <Widget>
+              [ Text("Total: ${totalSale.toString()}", style: TextStyle(color: Colors.white))],
+            ),
+          ),
+          Expanded(
+            child: Container(
+              alignment: Alignment.center,
+              color: Colors.red,
+              child:InkResponse(
+                    onTap: () async{
+                      buy_Now();
+                    },
+                    child: Text("BUY NOW", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                    )
+              )
+            )         
+        ],
+      )
+    )
+    );
+}
+
 
   Widget generateCart(Product d){
     return Padding(
@@ -103,13 +194,12 @@ void getData() {
                     Row(
                       children: <Widget>[
                         Expanded(child: Text(d.name,style: TextStyle(fontWeight: FontWeight.w600,fontSize:15.0),),),
-                        Expanded(child: Text("PriceA ${d.price.toString()}",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15.0),),),
-                        //Expanded(child: Text("PriceA ${d.price.toString()}",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 13.0),),),
+                        Expanded(child: Text("SubTotal ${  (d.quantity*d.price).toStringAsFixed(2)}",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 13.0),),),
                         Container(
                           alignment: Alignment.bottomRight,
                           child:InkResponse(
                                   onTap: (){
-                                    //model.removeCart(d);
+                                    remove_Product(d);
                                   },
                                   child: Padding(padding: EdgeInsets.only(right: 10.0),child: Icon(Icons.remove_circle,color: Colors.red,),
                                   )
@@ -120,24 +210,7 @@ void getData() {
                     Text("Price ${d.price.toString()}",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 13.0))
                     ,Row(
                       children: <Widget>[
-                    SizedBox(height: 5.0,),
-                    /*,Container(
-                          alignment: Alignment.bottomRight,
-                          child:InkResponse(
-                                  onTap: (){/*model.removeCart(d);*/},
-                                  child: Padding(padding: EdgeInsets.only(right: 10.0),child: Icon(Icons.add,color: Colors.blue,))
-                              ) ,
-                        )*/
-                    SizedBox(width: 10.0,)
-                    ,Text("quantity.toString(),")
-                    ,SizedBox(width: 10.0,)
-                    /*,Container(
-                      alignment: Alignment.bottomRight,
-                      child:InkResponse(
-                              onTap: (){/*model.removeCart(d);*/},
-                              child: Padding(padding: EdgeInsets.only(right: 10.0),child: Icon(Icons.remove,color: Colors.blue,))
-                          ) ,
-                      )*/
+                        Text("Quantity ${d.quantity.toString()}")
                     ])
                   ],
                 ),

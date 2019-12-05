@@ -5,6 +5,7 @@ import 'package:inkapharma/pages/registration_page.dart';
 import 'package:inkapharma/pages/twitter_login_page.dart';
 import 'package:inkapharma/pages/welcome_page.dart';
 import 'package:inkapharma/screen/home/home_screen.dart';
+import 'package:inkapharma/screen/product/product_page.dart';
 
 final routes = {
   '/' :          (context) => new WelcomePage(),
@@ -14,5 +15,6 @@ final routes = {
   HomeScreen.id: (context) => HomeScreen(),
   GoogleLoginPage.id: (context) => GoogleLoginPage(),
   TwitterLoginPage.id: (context) => TwitterLoginPage(),
-  FacebookLoginPage.id: (context) => FacebookLoginPage()
+  FacebookLoginPage.id: (context) => FacebookLoginPage(),
+  ProductListPage.id: (context) => ProductListPage()
 };
