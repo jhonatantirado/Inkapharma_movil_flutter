@@ -5,6 +5,7 @@ import 'package:inkapharma/common/app_constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:inkapharma/common/shared_preferences.dart';
 import 'package:inkapharma/model/UserProfile.dart';
+import 'package:inkapharma/screen/messages/messaging_page.dart';
 import 'package:inkapharma/screen/product/cart.dart';
 import 'package:inkapharma/auth.dart';
 import 'package:inkapharma/screen/home/home_screen_page.dart';
@@ -130,7 +131,11 @@ class HomeScreenState extends State<HomeScreen>
           ),
           BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.productHunt),
-            title: Text('Productos'),
+            title: Text('Products'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.facebookMessenger),
+            title: Text('Messages'),
           )
         ],
         onTap: (index) {
@@ -142,7 +147,10 @@ class HomeScreenState extends State<HomeScreen>
                 break;
               case 1:
                 content = ProductListPage();
-                break;              
+                break;
+              case 2:
+                content = MessagingPage();
+                break;               
             }
           });
         },
