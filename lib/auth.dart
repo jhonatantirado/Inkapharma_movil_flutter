@@ -1,6 +1,3 @@
-import 'package:inkapharma/data/database_helper.dart';
-import 'infraestructure/Sqflite_UserRepository.dart';
-
 enum AuthState { LOGGED_IN, LOGGED_OUT}
 
 abstract class AuthStateListener{
@@ -9,8 +6,6 @@ abstract class AuthStateListener{
 
 class AuthStateProvider{
   static final AuthStateProvider _instance = new AuthStateProvider.internal();
-
-  SqfliteUserRepository userRepository = SqfliteUserRepository(DatabaseHelper.get);
 
   List<AuthStateListener> _subscribers;
 

@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:inkapharma/common/app_constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:inkapharma/common/shared_preferences.dart';
+import 'package:inkapharma/model/UserProfile.dart';
 import 'package:inkapharma/screen/product/cart.dart';
-import 'package:inkapharma/screen/user/user_list_page.dart';
 import 'package:inkapharma/auth.dart';
 import 'package:inkapharma/screen/home/home_screen_page.dart';
 import 'package:inkapharma/screen/product/product_page.dart';
@@ -20,7 +23,8 @@ class HomeScreenState extends State<HomeScreen>
   Widget content = HomeScreenPage();
   var _currentIndex = 0;
   int total = 0;
-
+  UserProfile currentUser;
+  
   @override
   initState() {
     super.initState();
@@ -35,15 +39,38 @@ class HomeScreenState extends State<HomeScreen>
        });
      });
    }
-
+  
+  getUserProfile() async{
+    final myProfile = await read('currentUser');
+    print(myProfile);
+    final temp = UserProfile.fromJson(json.decode(myProfile));
+    setState(() {
+        currentUser  = temp;
+       });
+  }
 
   @override
   Widget build(BuildContext context){
 
    getCarList();
+   getUserProfile();
 
     return  Scaffold(
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountEmail: Text(currentUser.email),
+              accountName: Text(currentUser.username),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.black38,
+                backgroundImage: NetworkImage(currentUser.picture) 
+            )
+            ),
+          ],
+        )
+      ),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(AppConstants.preferredSize),
         child: AppBar(
@@ -126,5 +153,7 @@ class HomeScreenState extends State<HomeScreen>
     var authStateProvider = new AuthStateProvider();
     authStateProvider.notify(AuthState.LOGGED_OUT);
   }
+
+
 
 }
