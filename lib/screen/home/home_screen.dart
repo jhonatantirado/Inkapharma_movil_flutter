@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:inkapharma/model/user.dart';
-import 'package:inkapharma/screen/home/home_screen_presenter.dart';
 import 'package:inkapharma/common/app_constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:inkapharma/screen/product/cart.dart';
@@ -16,25 +14,16 @@ class HomeScreen extends StatefulWidget{
 }
 
 class HomeScreenState extends State<HomeScreen> 
-implements HomeScreenContract
 
 {
-  HomeScreenPresenter _presenter;
   String _homeText;
-  Widget content = UserListPage();
+  Widget content = HomeScreenPage();
   var _currentIndex = 0;
   int total = 0;
-
-  HomeScreenState(){
-    _presenter = new HomeScreenPresenter(this);
-    _presenter.getUserInfo();
-
-  }
 
   @override
   initState() {
     super.initState();
-    // getCarList();
   }
 
  void  getCarList( ) {
@@ -131,20 +120,6 @@ implements HomeScreenContract
           });
         },
       );
-
-  @override
-  void onDisplayUserInfo(User user){
-    setState(() {
-      _homeText = 'Hello ${user.username}';
-    });
-  }
-
-  @override
-  void onErrorUserInfo(){
-    setState(() {
-      _homeText = 'There was an error retrieving the information';
-    });
-  }
 
   void onLogout() async{
     print("Notify logout");
