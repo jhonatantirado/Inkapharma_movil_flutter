@@ -84,7 +84,6 @@ implements HomeScreenContract
                   child: Text((total > 0) ? total.toString() : "",
                                 textAlign:TextAlign.center
                                 ,style: TextStyle(fontSize:18.0,color: Colors.redAccent,fontWeight:FontWeight.bold))
-                  //child: Text("200") ,
               )
            ,Padding(
                 padding: EdgeInsets.only(right:5.0),

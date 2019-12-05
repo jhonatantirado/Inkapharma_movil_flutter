@@ -2,29 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/model/product.dart';
 import 'package:todo_app/infraestructure/Sqflite_ProductRepository.dart';
 import 'package:todo_app/data/database_helper.dart';
+import 'package:todo_app/screen/product/product_page.dart';
+import 'package:http/http.dart' as http;
+import 'package:todo_app/model/SaleOrderDetail.dart';
+import 'dart:async';
+import 'dart:convert';
+
 
 SqfliteProductRepository productRepository = SqfliteProductRepository(DatabaseHelper.get);
 
+ double  _opacity = 1;
  double totalSale;
- List<Product> products = const <Product>[
-  ];
+ List<Product> products = const <Product>[];
 
-
-class Cart extends StatefulWidget{
-  static final String route = "Cart-route";
-
-
+ class Cart extends StatefulWidget{
+ 
   @override
-  State<StatefulWidget> createState() {
-    
-    
-    return CartState();
-  }
+  State<StatefulWidget> createState() => CartState();
+   
 }
 
 
 class CartState extends State<Cart>{
-    
+
+  static final CREATE_POST_URL = 'https://inkafarma-axon.cfapps.io/sales';
+
   @override
   initState() {
     super.initState();
@@ -40,30 +42,65 @@ void getData() {
       });
   }
 
+ Future<String> createSale(String url, {Map body}) async {
+  
+  return http.post(
+      url
+    , headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"}
+    , body: json.encode(body))
+    .then((http.Response response) {
+
+      final int statusCode = response.statusCode;
+      print(response.body);
+      if (statusCode < 200 || statusCode > 400 || json == null) {
+        throw new Exception("Error while fetching data");
+      }
+
+    return response.body;
+    });
+    //return 'ok';
+  }
+
+
+
  void remove_Product( Product product ) {
         productRepository.delete(product);
         getData();
   }
 
-  void buy_Now() {
+    void buy_Now() async {
         
-        //productRepository.deleteAllCarList();
-        
+        List<SaleOrderDetail>  newDetails = new List<SaleOrderDetail>(); 
+
+        products.forEach((f)=> 
+          newDetails.add(new SaleOrderDetail(detailId: "", saleId: "", status: 1, price: f.price, productId: f.id , currency: "PEN", quantity: f.quantity))
+         );
+
+        Sale newSale = new Sale(customerId: 2, details: newDetails);
+
+        Map newMap =newSale.toMap();
+        String saleId = await createSale(CREATE_POST_URL, body: newMap);
+        print(saleId);
+
+
+        productRepository.deleteAllCarList();
         Navigator.pop(context, true);
+        // MaterialPageRoute(builder: (context) =>  ProductListPage());
   }
 
   @override
   Widget build(BuildContext context) {
 
       setState(() {
-
         final totalSaleFuture = productRepository.getTotalSale();
         totalSaleFuture.then((result) {
         setState(() {
-          totalSale = num.parse( result.toStringAsFixed(2)) ;
+          totalSale = result == null ? 0: num.parse( result.toStringAsFixed(2)) ;
+          _opacity = totalSale > 0 ? 1: 0;
         });
       });
-
       });
 
     return Scaffold(
@@ -92,7 +129,8 @@ void getData() {
   }
 
 Widget _indexBottom() { 
-  return Container(
+  return  Opacity(opacity: _opacity,
+      child: Container(
       height: 56,
       margin: EdgeInsets.symmetric(vertical: 24, horizontal: 12),
       child: Row(
@@ -104,28 +142,24 @@ Widget _indexBottom() {
               mainAxisAlignment: MainAxisAlignment.center,
               children: 
               <Widget>
-              [//Icon(Icons.chat, color: Colors.white), 
-               Text("Total: ${totalSale.toString()}", style: TextStyle(color: Colors.white))
-              ],
+              [ Text("Total: ${totalSale.toString()}", style: TextStyle(color: Colors.white))],
             ),
           ),
           Expanded(
             child: Container(
               alignment: Alignment.center,
               color: Colors.red,
-              //child: Text("BUY NOW", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
               child:InkResponse(
-                    onTap: (){
+                    onTap: () async{
                       buy_Now();
-                      //remove_Product(d);
                     },
-                    //child: Padding(padding: EdgeInsets.only(right: 10.0),child: Icon(Icons.remove_circle,color: Colors.red,),
                     child: Text("BUY NOW", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                     )
               )
             )         
         ],
       )
+    )
     );
 }
 

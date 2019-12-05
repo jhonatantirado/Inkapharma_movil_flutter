@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/infraestructure/Sqflite_UserRepository.dart';
-import 'package:todo_app/data/database_helper.dart';
 import 'package:todo_app/services/webservice.dart';
 import 'package:todo_app/screen/product/product_page_detail.dart';
 import 'package:todo_app/model/product.dart';
-import 'package:todo_app/services/product.dart';
+
 
 class ProductListPage extends StatefulWidget {
   @override
@@ -13,15 +11,10 @@ class ProductListPage extends StatefulWidget {
 
 class ProductListPageState extends State<ProductListPage> {
 
-  //SqfliteUserRepository userRepository = SqfliteUserRepository(DatabaseHelper.get);
-
   @override
   void initState() {
     super.initState();
     _populateProducts(); 
-    // ProductModel b = ProductModel();
-    //  b.createPost();
-
   }
 
   void _populateProducts(){
