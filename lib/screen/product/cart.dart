@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:inkapharma/model/SaleOrderDetail.dart';
 import 'dart:async';
 import 'dart:convert';
+import 'package:localstorage/localstorage.dart';
 
 SqfliteProductRepository productRepository =
     SqfliteProductRepository(DatabaseHelper.get);
@@ -91,6 +92,8 @@ class CartState extends State<Cart> {
 
     productRepository.deleteAllCarList();
 
+    final storage = LocalStorage('app_data');
+    storage.setItem("MsgVenta", "Successful purchase: " + saleId);
     Navigator.pop(context, true);
   }
 

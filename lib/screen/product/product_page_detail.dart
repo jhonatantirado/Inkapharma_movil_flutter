@@ -10,7 +10,6 @@ SqfliteProductRepository productRepository = SqfliteProductRepository(DatabaseHe
 
 class Product_Detail extends StatefulWidget{
 
-  static final String route = "Home-route";
   Product detail;
   Product_Detail({this.detail});
 
@@ -149,13 +148,7 @@ initState() {
                               Text("Price  ",style: TextStyle(fontSize: 20.00,fontWeight: FontWeight.w400)),      
                               Text("\$${price.toString()}",style: TextStyle(fontSize: 23.0,fontWeight: FontWeight.w600)),      
                             ],
-                          ),
-                        /*Container(
-                        width: 100.0,
-                        child: Text("Price",style: TextStyle(fontSize: 12.0,color: Colors.grey),),
-                         ),
-                        Text("\$${widget.detail.price.toString()}",style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.w600)),
-                        */
+                          ),                        
                         ],
                       ),
                     ),
