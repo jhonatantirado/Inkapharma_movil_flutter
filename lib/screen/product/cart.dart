@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inkapharma/common/shared_preferences.dart';
+import 'package:inkapharma/common/app_constants.dart';
 import 'package:inkapharma/model/product.dart';
 import 'package:inkapharma/infraestructure/Sqflite_ProductRepository.dart';
 import 'package:inkapharma/data/database_helper.dart';
@@ -7,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:inkapharma/model/SaleOrderDetail.dart';
 import 'dart:async';
 import 'dart:convert';
+import 'package:localstorage/localstorage.dart';
 
 SqfliteProductRepository productRepository =
     SqfliteProductRepository(DatabaseHelper.get);
@@ -22,7 +24,6 @@ class Cart extends StatefulWidget {
 }
 
 class CartState extends State<Cart> {
-  static final CREATE_POST_URL = 'https://inkafarma-axon.cfapps.io/sales';
 
   @override
   initState() {
@@ -59,7 +60,7 @@ class CartState extends State<Cart> {
       final int statusCode = response.statusCode;
       print(response.body);
       if (statusCode < 200 || statusCode > 400 || json == null) {
-        throw new Exception("Error while fetching data");
+        throw new Exception(AppConstants.errorFetchingData);
       }
 
       return response.body;
@@ -79,18 +80,20 @@ class CartState extends State<Cart> {
         status: 1,
         price: f.price,
         productId: f.id,
-        currency: "PEN",
+        currency: AppConstants.peruCurrencyISOCode,
         quantity: f.quantity)));
 
     Sale newSale =
         new Sale(customerId: 2, details: newDetails, firebaseToken: token);
 
     Map newMap = newSale.toMap();
-    String saleId = await createSale(CREATE_POST_URL, body: newMap);
+    String saleId = await createSale( AppConstants.CREATE_POST_URL, body: newMap);
     print(saleId);
 
     productRepository.deleteAllCarList();
 
+    final storage = LocalStorage('app_data');
+    storage.setItem("MsgVenta", AppConstants.successfullPurchase + saleId);
     Navigator.pop(context, true);
   }
 
@@ -109,7 +112,7 @@ class CartState extends State<Cart> {
     return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-          title: Text("Shopping Cart"),
+          title: Text(AppConstants.shoppingCartTitle),
         ),
         backgroundColor: Color(0xFFF5F5F5),
         body: Container(
@@ -151,7 +154,7 @@ class CartState extends State<Cart> {
                           onTap: () async {
                             buy_Now();
                           },
-                          child: Text("BUY NOW",
+                          child: Text(AppConstants.buyNowLabel,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 18)),
                         )))

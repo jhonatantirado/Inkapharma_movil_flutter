@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inkapharma/common/app_constants.dart';
 import 'package:inkapharma/components/rounded_button.dart';
 import 'package:inkapharma/pages/facebook_login_page.dart';
 import 'package:inkapharma/pages/google_login_page.dart';
@@ -63,7 +64,7 @@ class _WelcomePageState extends State<WelcomePage>
                   ),
                 ),
                 TypewriterAnimatedTextKit(
-                  text: ['Inkafarma'],
+                  text: [AppConstants.animatedTextLabel],
                   textStyle: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,

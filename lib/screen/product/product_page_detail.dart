@@ -1,5 +1,6 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "package:flutter/material.dart";
+import 'package:inkapharma/common/app_constants.dart';
 import "dart:async";
 import 'package:inkapharma/model/product.dart';
 import 'package:inkapharma/components/round_icon_button.dart';
@@ -10,7 +11,6 @@ SqfliteProductRepository productRepository = SqfliteProductRepository(DatabaseHe
 
 class Product_Detail extends StatefulWidget{
 
-  static final String route = "Home-route";
   Product detail;
   Product_Detail({this.detail});
 
@@ -149,13 +149,7 @@ initState() {
                               Text("Price  ",style: TextStyle(fontSize: 20.00,fontWeight: FontWeight.w400)),      
                               Text("\$${price.toString()}",style: TextStyle(fontSize: 23.0,fontWeight: FontWeight.w600)),      
                             ],
-                          ),
-                        /*Container(
-                        width: 100.0,
-                        child: Text("Price",style: TextStyle(fontSize: 12.0,color: Colors.grey),),
-                         ),
-                        Text("\$${widget.detail.price.toString()}",style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.w600)),
-                        */
+                          ),                        
                         ],
                       ),
                     ),
@@ -229,7 +223,7 @@ initState() {
                             //showCartSnak(model.cartMsg,model.success);
                           });
                         },
-                        child: Text("ADD TO CART",style: TextStyle(color: Colors.white),),
+                        child: Text(AppConstants.addToCartLabel,style: TextStyle(color: Colors.white),),
                       )
                     ],
                     ),
