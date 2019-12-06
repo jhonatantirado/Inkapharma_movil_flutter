@@ -29,10 +29,10 @@ class HomeScreenState extends State<HomeScreen>
   @override
   initState() {
     super.initState();
+    getUserProfile();
   }
 
  void  getCarList( ) {
-     
      final productFuture = productRepository.getCount();
      productFuture.then((count) {
        setState(() {
@@ -52,10 +52,7 @@ class HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context){
-
-   getCarList();
-   getUserProfile();
-
+    getCarList();
     return  Scaffold(
       drawer: Drawer(
         child: ListView(
