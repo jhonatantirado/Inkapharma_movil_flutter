@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:inkapharma/common/app_constants.dart';
 import 'package:inkapharma/services/webservice.dart';
 import 'package:inkapharma/screen/product/product_page_detail.dart';
 import 'package:inkapharma/model/product.dart';
@@ -38,14 +39,14 @@ class ProductListPageState extends State<ProductListPage> {
         Scaffold.of(context).showSnackBar(SnackBar(
           content: Text(
             msg,
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white, fontSize: 20.0),
           ),
           backgroundColor: Colors.green,
-          duration: Duration(seconds: 4),
+          duration: Duration(seconds: AppConstants.showSuccessfullPurchaseForXSeconds),
         ));
       }
 
-      Timer(Duration(seconds: 10), () {
+      Timer(Duration(seconds: AppConstants.showSuccessfullPurchaseAfterXSeconds), () {
         showCartSnak(msgVenta);
         storage.setItem("MsgVenta", "");
         msgVenta = '';

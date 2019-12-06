@@ -1,5 +1,6 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "package:flutter/material.dart";
+import 'package:inkapharma/common/app_constants.dart';
 import "dart:async";
 import 'package:inkapharma/model/product.dart';
 import 'package:inkapharma/components/round_icon_button.dart';
@@ -222,7 +223,7 @@ initState() {
                             //showCartSnak(model.cartMsg,model.success);
                           });
                         },
-                        child: Text("ADD TO CART",style: TextStyle(color: Colors.white),),
+                        child: Text(AppConstants.addToCartLabel,style: TextStyle(color: Colors.white),),
                       )
                     ],
                     ),

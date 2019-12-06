@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inkapharma/common/app_constants.dart';
 import 'package:inkapharma/pages/twitter_sign_in.dart';
 import 'package:inkapharma/screen/home/home_screen.dart';
 
@@ -56,7 +57,7 @@ class _LoginPageState extends State<TwitterLoginPage> {
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
-                'Sign in with Twitter',
+                AppConstants.twitterSignInLabel,
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.grey,
