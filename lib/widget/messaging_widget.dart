@@ -1,3 +1,4 @@
+import 'package:inkapharma/common/shared_preferences.dart';
 import 'package:inkapharma/model/message.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class _MessagingWidgetState extends State<MessagingWidget> {
   void initState() {
     super.initState();
     _firebaseMessaging.getToken().then((token) {
+      saveString('firebaseToken',token);
       print(token);
     });
     _firebaseMessaging.configure(

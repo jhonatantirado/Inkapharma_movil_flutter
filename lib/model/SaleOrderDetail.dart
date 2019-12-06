@@ -1,8 +1,9 @@
 class Sale {
   final int customerId;
   final List<SaleOrderDetail> details;
+  final String firebaseToken;
   
-  Sale({this.customerId, this.details});
+  Sale({this.customerId, this.details, this.firebaseToken});
  
   factory Sale.fromJson(Map<String, dynamic> json) {
     return Sale(
@@ -15,6 +16,7 @@ class Sale {
     var map = new Map<String, dynamic>();
     map["customerId"] = customerId;
     map["details"] =   List<dynamic>.from(details.map( (x) => x.toMap() ));
+    map["token"] = firebaseToken;
    
     return map;
   }
