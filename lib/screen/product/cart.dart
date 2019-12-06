@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:todo_app/model/SaleOrderDetail.dart';
 import 'dart:async';
 import 'dart:convert';
-
+import 'package:localstorage/localstorage.dart';
 
 SqfliteProductRepository productRepository = SqfliteProductRepository(DatabaseHelper.get);
 
@@ -42,9 +42,8 @@ void getData() {
       });
   }
 
- Future<String> createSale(String url, {Map body}) async {
-  
-return http.post(
+ Future<String> createSale(String url, {Map body}) async {  
+  return http.post(
       url
     , headers: {
       "Accept": "application/json",
@@ -89,6 +88,9 @@ return http.post(
         
         // Navigator.pushNamed(context, "/product");
         //Navigator.pushNamed(context, "/product");
+
+        final storage = LocalStorage('app_data');
+        storage.setItem("MsgVenta", "Successful purchase");
         Navigator.pop(context, true);
         // MaterialPageRoute(builder: (context) =>  ProductListPage());
   }
