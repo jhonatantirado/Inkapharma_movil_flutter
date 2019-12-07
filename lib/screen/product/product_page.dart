@@ -8,8 +8,7 @@ import 'package:localstorage/localstorage.dart';
 
 class ProductListPage extends StatefulWidget {
   static const String id = 'product_page';
-  Product mensajeConfirm;
-  ProductListPage({this.mensajeConfirm});
+  ProductListPage();
 
   @override
   State<StatefulWidget> createState() => ProductListPageState();
@@ -30,92 +29,52 @@ class ProductListPageState extends State<ProductListPage> {
         });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    String msgVenta = storage.getItem("MsgVenta");
-
-    if (msgVenta != '') {
-      showCartSnak(String msg) {
-        Scaffold.of(context).showSnackBar(SnackBar(
-          content: Text(
-            msg,
-            style: TextStyle(color: Colors.white, fontSize: 20.0),
-          ),
+  showCartSnak(String msg){
+    Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(msg,style: TextStyle(color: Colors.white),),
           backgroundColor: Colors.green,
           duration: Duration(seconds: AppConstants.showSuccessfullPurchaseForXSeconds),
-        ));
-      }
-
-      Timer(Duration(seconds: AppConstants.showSuccessfullPurchaseAfterXSeconds), () {
-        showCartSnak(msgVenta);
-        storage.setItem("MsgVenta", "");
-        msgVenta = '';
-      });
-    }
-
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-            appBar: MyCustomAppBar(height: 70),
-            body: GridView.count(
-                crossAxisCount: 2,
-                children: List.generate(_products.length, (index) {
-                  return Center(
-                    child: ChoiceCard(
-                        product: _products[index],
-                        msgConfirm: "widget.mensajeConfirm"),
-                  );
-                }))));
+    ));
   }
-}
-
-class MyCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final double height;
-
-  const MyCustomAppBar({
-    Key key,
-    @required this.height,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          color: Colors.red[300],
-          child: Padding(
-            padding: EdgeInsets.all(1),
-            child: AppBar(
-              title: Container(
-                color: Colors.white,
-                child: TextField(
-                  decoration: InputDecoration(
-                      hintText: "Product", contentPadding: EdgeInsets.all(4)),
-                ),
-              ),
-              actions: [
-                IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () => null,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
+    
+    String msgVenta = storage.getItem("MsgVenta");
+    
+    if ( msgVenta != null && msgVenta != '' )
+    {        
+        Timer(Duration(seconds: AppConstants.showSuccessfullPurchaseAfterXSeconds), () {
+          showCartSnak(msgVenta);
+          storage.setItem("MsgVenta", "");
+          msgVenta = '';
+        });
+   }
+
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false
+      ,home: Scaffold(
+        body: GridView.count(
+          crossAxisCount: 2,
+          children: List.generate(_products.length, (index) {
+              return Center(
+                child: ChoiceCard(product: _products[index]),
+              );
+           }
+          )
+        )
+      )
     );
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(height);
 }
 
 List<Product> _products = const <Product>[];
 
 class ChoiceCard extends StatelessWidget {
-  const ChoiceCard({Key key, this.product, this.msgConfirm}) : super(key: key);
+  const ChoiceCard({Key key, this.product}) : super(key: key);
   final Product product;
-  final msgConfirm;
 
   @override
   Widget build(BuildContext context) {
