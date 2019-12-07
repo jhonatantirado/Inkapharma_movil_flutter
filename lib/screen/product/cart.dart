@@ -34,27 +34,6 @@ class CartState extends State<Cart>{
     getData();
   }
 
- Future<String> createSale(String url, {Map body}) async {  
-  
-  return http.post(
-      url
-    , headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/json"}
-    , body: json.encode(body))
-    .then((http.Response response) {
-
-      final int statusCode = response.statusCode;
-      print(response.body);
-      if (statusCode < 200 || statusCode > 400 || json == null) {
-        throw new Exception("Error while fetching data");
-      }
-
-    return response.body;
-    });
-    
-    //return 'ok';
-  }
 
 
   @override
@@ -95,44 +74,6 @@ class CartState extends State<Cart>{
       );
   }
 
-
-/*
-  Widget _indexBottom() { 
-  return  Opacity(opacity: _opacity,
-      child: Container(
-      height: 56,
-      margin: EdgeInsets.symmetric(vertical: 24, horizontal: 12),
-      child: Row(
-        children: <Widget>[
-          Container(
-            width: 200,
-            color: Colors.blueAccent,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: 
-              <Widget>
-              [ Text("Total: ${totalSale.toString()}", style: TextStyle(color: Colors.white))],
-            ),
-          ),
-          Expanded(
-            child: Container(
-              alignment: Alignment.center,
-              color: Colors.red,
-              child:InkResponse(
-                    onTap: () async{
-                      buyNow();
-                    },
-                    child: Text("BUY NOW", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                    )
-              )
-            )         
-        ],
-      )
-    )
-    );
-}
-
-*/
   void getData() {
       final productFuture = productRepository.getList();
       productFuture.then((productList) {
@@ -169,6 +110,29 @@ class CartState extends State<Cart>{
         Navigator.pop(context, true);
      
   }
+
+   Future<String> createSale(String url, {Map body}) async {  
+  
+  return http.post(
+      url
+    , headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"}
+    , body: json.encode(body))
+    .then((http.Response response) {
+
+      final int statusCode = response.statusCode;
+      print(response.body);
+      if (statusCode < 200 || statusCode > 400 || json == null) {
+        throw new Exception("Error while fetching data");
+      }
+
+    return response.body;
+    });
+    
+    //return 'ok';
+  }
+
 
 
 
