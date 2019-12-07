@@ -5,6 +5,9 @@ import 'package:inkapharma/common/app_constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:inkapharma/common/shared_preferences.dart';
 import 'package:inkapharma/model/UserProfile.dart';
+import 'package:inkapharma/pages/facebook_sign_in.dart';
+import 'package:inkapharma/pages/google_sign_in.dart';
+import 'package:inkapharma/pages/twitter_sign_in.dart';
 import 'package:inkapharma/pages/welcome_page.dart';
 import 'package:inkapharma/screen/messages/messaging_page.dart';
 import 'package:inkapharma/screen/product/cart.dart';
@@ -158,6 +161,9 @@ class HomeScreenState extends State<HomeScreen>
     print("Notify logout");
     var authStateProvider = new AuthStateProvider();
     authStateProvider.notify(AuthState.LOGGED_OUT);
+    signOutFacebook();
+    signOutGoogle();
+    signOutTwitter();
     Navigator.pushNamed(context, WelcomePage.id);
   }
 

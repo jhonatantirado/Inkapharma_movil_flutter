@@ -36,7 +36,7 @@ Future<FirebaseUser> signInWithTwitter() async {
   return currentUser;
 }
 
-void signOut() async {
+void signOutTwitter() async {
   await twitterLogin.logOut();
   print("User Sign Out");
 }

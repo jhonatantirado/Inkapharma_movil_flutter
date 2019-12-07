@@ -36,7 +36,7 @@ Future<FirebaseUser> signInWithFacebook() async {
   return currentUser;
 }
 
-void signOut() async {
+void signOutFacebook() async {
   await facebookLogin.logOut();
   print("User Sign Out");
 }
