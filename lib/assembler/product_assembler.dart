@@ -7,11 +7,12 @@ class ProductAssembler implements Assembler<Product>{
   final columnName = 'name';
   final columnPrice = 'price';
   final columnQuantity = 'quantity';
+  final columnStock = 'stock';
   final columnImageUrl = 'imageUrl';
 
   @override
   Product fromMap(Map<String, dynamic > query) {
-    Product product = Product(query[columnName],query[columnPrice],query[columnQuantity],query[columnImageUrl]);
+    Product product = Product(query[columnName],query[columnPrice],query[columnQuantity],query[columnStock],query[columnImageUrl]);
     return product;
   }
 
@@ -22,12 +23,13 @@ class ProductAssembler implements Assembler<Product>{
       columnName: product.name,
       columnPrice: product.price,
       columnQuantity: product.quantity,
-      columnImageUrl: product.imageUrl
+      columnImageUrl: product.imageUrl//,
+      //columnStock: product.stock
     };
   }
 
   Product fromDbRow(dynamic row){
-    return Product.withId(row[columnId], row[columnName],row[columnPrice],row[columnQuantity],row[columnImageUrl]);
+    return Product.withId(row[columnId], row[columnName],row[columnPrice],row[columnQuantity], row[columnStock],row[columnImageUrl]);
   }
 
   @override

@@ -40,7 +40,7 @@ class SqfliteProductRepository implements ProductRepository {
     List<Map> result = await db.rawQuery("SELECT * FROM Product where id=?",[product.id]);
     if (result.isNotEmpty){
       var element = result.elementAt(0);
-      return new Product.withId(element["id"],element["name"],element["price"],element["quantity"],element["imageUrl"]);
+      return new Product.withId(element["id"],element["name"],element["price"],element["quantity"],element["stock"], element["imageUrl"]);
     } else{
       return null;
     }

@@ -1,10 +1,11 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "package:flutter/material.dart";
-import "dart:async";
 import 'package:todo_app/model/product.dart';
 import 'package:todo_app/components/round_icon_button.dart';
 import 'package:todo_app/infraestructure/Sqflite_ProductRepository.dart';
 import 'package:todo_app/data/database_helper.dart';
+import 'dart:async';
+import 'package:localstorage/localstorage.dart';
 
 SqfliteProductRepository productRepository = SqfliteProductRepository(DatabaseHelper.get);
 
@@ -51,7 +52,7 @@ initState() {
   }
 
  void  getProduct( Product product ) {
-     //Product result;
+     
      final productFuture = productRepository.getProduct(product);
      productFuture.then((product) {
        setState(() {
@@ -70,17 +71,37 @@ initState() {
      });
    }
 
+  showCartSnak(String msg){
+    Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(msg,style: TextStyle(color: Colors.white, fontSize: 18),),
+          backgroundColor: Colors.red,
+          duration: Duration(seconds: 4),
+    ));
+  }
 
   void add_To_Car( Product product ) {
       
+    if(product.quantity > product.stock )
+    {
+        Timer(Duration(seconds: 1), () {
+          showCartSnak("El Stock de " + product.name + " es " + product.stock.toString() );
+        });
+        return;
+    }
+
+    final storage = LocalStorage('app_data');
+
     if (get_Product != null) {
           debugPrint('update');
           productRepository.update(product);
+          //storage.setItem("MsgVenta", "Carrito de Compras guardado");
     } else {
           debugPrint('insert');
           productRepository.insert(product);
-    }
-   Navigator.pop(context, true);
+          //storage.setItem("MsgVenta", "Carrito de Compras actualizado");
+          }
+      Navigator.pop(context, true);
 
     }
     
@@ -114,8 +135,7 @@ initState() {
                             height: 180.0,
                             child: PageView(
                               controller: _controller,
-                              onPageChanged: (index){
-                                print(index);
+                              onPageChanged: (index){                                
                                 setState(() {
                                   active = index;
                                 });
@@ -127,11 +147,6 @@ initState() {
                                 ,Icon(Icons.accessible, size: 90.0, color: Colors.red)
                               ],
                             ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                            ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -152,7 +167,6 @@ initState() {
                         ],
                       ),
                     ),
-                   
                   ],
                 ),
                 
@@ -216,12 +230,7 @@ initState() {
                       RaisedButton(
                         color: Colors.deepOrange,
                         onPressed: (){
-                          add_To_Car( widget.detail);
-                          //model.addCart(widget.detail);
-                          Timer(Duration(milliseconds: 500), (){
-                            //showCartSnak(model.cartMsg,model.success);
-                          });
-                        },
+                          add_To_Car( widget.detail);                        },
                         child: Text("ADD TO CART",style: TextStyle(color: Colors.white),),
                       )
                     ],

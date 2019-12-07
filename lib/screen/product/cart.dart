@@ -43,7 +43,7 @@ void getData() {
   }
 
  Future<String> createSale(String url, {Map body}) async {  
-  return http.post(
+  /*return http.post(
       url
     , headers: {
       "Accept": "application/json",
@@ -58,8 +58,8 @@ void getData() {
       }
 
     return response.body;
-    });
-    //return 'ok';
+    });*/
+    return 'ok';
   }
 
 
@@ -76,9 +76,7 @@ void getData() {
           newDetails.add(new SaleOrderDetail(detailId: "", saleId: "", status: 1, price: f.price, productId: f.id , currency: "PEN", quantity: f.quantity))
          );
 
-
         Sale newSale = new Sale(customerId: 2, details: newDetails);
-
 
         Map newMap =newSale.toMap();
         String saleId = await createSale(CREATE_POST_URL, body: newMap);
@@ -86,13 +84,10 @@ void getData() {
 
         productRepository.deleteAllCarList();
         
-        // Navigator.pushNamed(context, "/product");
-        //Navigator.pushNamed(context, "/product");
-
         final storage = LocalStorage('app_data');
         storage.setItem("MsgVenta", "Successful purchase");
         Navigator.pop(context, true);
-        // MaterialPageRoute(builder: (context) =>  ProductListPage());
+     
   }
 
   @override

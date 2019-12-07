@@ -33,41 +33,39 @@ class ProductListPageState extends State<ProductListPage> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    
-    String msgVenta = storage.getItem("MsgVenta");
-
-    if ( msgVenta != '' )
-    {
-    showCartSnak(String msg){
+  showCartSnak(String msg){
     Scaffold.of(context).showSnackBar(
         SnackBar(
           content: Text(msg,style: TextStyle(color: Colors.white),),
           backgroundColor: Colors.green,
           duration: Duration(seconds: 4),
-        ));
-
+    ));
   }
-    Timer(Duration(seconds: 3), () {
-      showCartSnak(msgVenta);
-      storage.setItem("MsgVenta", "");
-      msgVenta = '';
-    });
+
+  @override
+  Widget build(BuildContext context) {
+    
+    String msgVenta = storage.getItem("MsgVenta");
+    
+    if ( msgVenta != null && msgVenta != '' )
+    {        
+        Timer(Duration(seconds: 3), () {
+          showCartSnak(msgVenta);
+          storage.setItem("MsgVenta", "");
+          msgVenta = '';
+        });
    }
 
+
     return MaterialApp(
-      
-
-
       debugShowCheckedModeBanner: false
       ,home: Scaffold(
-        appBar: MyCustomAppBar(height: 70),
+        appBar: MyCustomAppBar(),
         body: GridView.count(
           crossAxisCount: 2,
           children: List.generate(_products.length, (index) {
               return Center(
-                child: ChoiceCard(product: _products[index], msgConfirm:"widget.mensajeConfirm"),
+                child: ChoiceCard(product: _products[index]),
               );
            }
           )
@@ -79,13 +77,7 @@ class ProductListPageState extends State<ProductListPage> {
 }
 
 class MyCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final double height;
-
-  const MyCustomAppBar({
-    Key key,
-    @required this.height,
-  }) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -97,13 +89,15 @@ class MyCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             child: AppBar(
                     title: Container(
                       color: Colors.white,
-                      child: TextField(decoration: InputDecoration(hintText: "Product",contentPadding: EdgeInsets.all(4)),
-                      ),
+                      child: TextField(decoration: InputDecoration(hintText: "Product",contentPadding: EdgeInsets.all(4))),
                     ),
                     actions: [
                       IconButton(
                         icon: Icon(Icons.search),
-                        onPressed: () => null,
+                        onPressed: () {
+                          
+                          
+                        },
                       ),
                     ],
                   ) ,
@@ -114,17 +108,16 @@ class MyCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
   
  @override
-  Size get preferredSize => Size.fromHeight(height);
+  Size get preferredSize => Size.fromHeight(70);
 }
 
 List<Product> _products = const <Product>[];
 
 class ChoiceCard extends StatelessWidget {
 
-  const ChoiceCard({Key key, this.product, this.msgConfirm}) : super(key: key);
+  const ChoiceCard({Key key, this.product}) : super(key: key);
   final Product product;
-  final msgConfirm;
-
+  
   
   @override
   Widget build(BuildContext context) {
