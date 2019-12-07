@@ -1,5 +1,5 @@
- import 'package:flutter/material.dart';
- import 'package:todo_app/model/product.dart';
+import 'package:flutter/material.dart';
+import 'package:todo_app/model/product.dart';
 import 'package:todo_app/screen/product/product_page_detail.dart';
  
 class ContentProduct extends StatelessWidget {
