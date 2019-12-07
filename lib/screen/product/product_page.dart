@@ -8,8 +8,7 @@ import 'package:localstorage/localstorage.dart';
 
 class ProductListPage extends StatefulWidget {
   static const String id = 'product_page';
-  Product mensajeConfirm;
-  ProductListPage({this.mensajeConfirm});
+  ProductListPage();
 
   @override
   State<StatefulWidget> createState() => ProductListPageState();
@@ -57,13 +56,11 @@ class ProductListPageState extends State<ProductListPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false
       ,home: Scaffold(
-        appBar: MyCustomAppBar(),
         body: GridView.count(
           crossAxisCount: 2,
           children: List.generate(_products.length, (index) {
               return Center(
-                child: ChoiceCard(product: _products[index],
-                msgConfirm: "widget.mensajeConfirm"),
+                child: ChoiceCard(product: _products[index]),
               );
            }
           )
@@ -73,47 +70,11 @@ class ProductListPageState extends State<ProductListPage> {
   }
 }
 
-class MyCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          color: Colors.red[300],
-          child: Padding(
-            padding: EdgeInsets.all(1),
-            child: AppBar(
-              title: Container(
-                color: Colors.white,
-                child: TextField(
-                  decoration: InputDecoration(
-                      hintText: "Product", contentPadding: EdgeInsets.all(4)),
-                ),
-              ),
-              actions: [
-                IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () => null,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-  
- @override
-  Size get preferredSize => Size.fromHeight(70);
-}
-
 List<Product> _products = const <Product>[];
 
 class ChoiceCard extends StatelessWidget {
-  const ChoiceCard({Key key, this.product, this.msgConfirm}) : super(key: key);
+  const ChoiceCard({Key key, this.product}) : super(key: key);
   final Product product;
-  final msgConfirm;
 
   @override
   Widget build(BuildContext context) {
