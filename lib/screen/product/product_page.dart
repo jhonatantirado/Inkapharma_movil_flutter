@@ -30,53 +30,51 @@ class ProductListPageState extends State<ProductListPage> {
         });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    String msgVenta = storage.getItem("MsgVenta");
-
-    if (msgVenta != '') {
-      showCartSnak(String msg) {
-        Scaffold.of(context).showSnackBar(SnackBar(
-          content: Text(
-            msg,
-            style: TextStyle(color: Colors.white, fontSize: 20.0),
-          ),
+  showCartSnak(String msg){
+    Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(msg,style: TextStyle(color: Colors.white),),
           backgroundColor: Colors.green,
           duration: Duration(seconds: AppConstants.showSuccessfullPurchaseForXSeconds),
-        ));
-      }
+    ));
+  }
 
-      Timer(Duration(seconds: AppConstants.showSuccessfullPurchaseAfterXSeconds), () {
-        showCartSnak(msgVenta);
-        storage.setItem("MsgVenta", "");
-        msgVenta = '';
-      });
-    }
+  @override
+  Widget build(BuildContext context) {
+    
+    String msgVenta = storage.getItem("MsgVenta");
+    
+    if ( msgVenta != null && msgVenta != '' )
+    {        
+        Timer(Duration(seconds: AppConstants.showSuccessfullPurchaseAfterXSeconds), () {
+          showCartSnak(msgVenta);
+          storage.setItem("MsgVenta", "");
+          msgVenta = '';
+        });
+   }
+
 
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-            appBar: MyCustomAppBar(height: 70),
-            body: GridView.count(
-                crossAxisCount: 2,
-                children: List.generate(_products.length, (index) {
-                  return Center(
-                    child: ChoiceCard(
-                        product: _products[index],
-                        msgConfirm: "widget.mensajeConfirm"),
-                  );
-                }))));
+      debugShowCheckedModeBanner: false
+      ,home: Scaffold(
+        appBar: MyCustomAppBar(),
+        body: GridView.count(
+          crossAxisCount: 2,
+          children: List.generate(_products.length, (index) {
+              return Center(
+                child: ChoiceCard(product: _products[index],
+                msgConfirm: "widget.mensajeConfirm"),
+              );
+           }
+          )
+        )
+      )
+    );
   }
 }
 
 class MyCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final double height;
-
-  const MyCustomAppBar({
-    Key key,
-    @required this.height,
-  }) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -105,9 +103,9 @@ class MyCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ],
     );
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(height);
+  
+ @override
+  Size get preferredSize => Size.fromHeight(70);
 }
 
 List<Product> _products = const <Product>[];

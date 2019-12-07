@@ -8,11 +8,12 @@ class Product {
   String name;
   double  price;
   int quantity;
+  int stock;
   String imageUrl;
 
-  Product(this.name, this.price, this.quantity, this.imageUrl);
-  Product.withId(this.id, this.name, this.price, this.quantity, this.imageUrl);
-
+  Product(this.name, this.price, this.quantity,this.stock, this.imageUrl);
+  Product.withId(this.id, this.name, this.price, this.quantity, this.stock, this.imageUrl);
+  
   factory Product.fromJson(Map<String,dynamic> json) {
 
     return Product.withId( 
@@ -20,6 +21,7 @@ class Product {
         ,json['name']
         ,json['price'] 
         , 1
+        ,json['stock'] 
         ,  json['imageUrl'] ?? AppConstants.NEWS_PLACEHOLDER_IMAGE_ASSET_URL);
   }
 
