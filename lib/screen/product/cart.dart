@@ -43,6 +43,7 @@ void getData() {
   }
 
  Future<String> createSale(String url, {Map body}) async {  
+  /*
   return http.post(
       url
     , headers: {
@@ -59,17 +60,18 @@ void getData() {
 
     return response.body;
     });
-    //return 'ok';
+    */
+    return 'ok';
   }
 
 
 
- void remove_Product( Product product ) {
+ void removeProduct( Product product ) {
         productRepository.delete(product);
         getData();
   }
 
-    void buy_Now() async {
+    void buyNow() async {
         
         List<SaleOrderDetail>  newDetails = new List<SaleOrderDetail>(); 
         products.forEach((f)=> 
@@ -151,7 +153,7 @@ Widget _indexBottom() {
               color: Colors.red,
               child:InkResponse(
                     onTap: () async{
-                      buy_Now();
+                      buyNow();
                     },
                     child: Text("BUY NOW", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                     )
@@ -202,7 +204,7 @@ Widget _indexBottom() {
                           alignment: Alignment.bottomRight,
                           child:InkResponse(
                                   onTap: (){
-                                    remove_Product(d);
+                                    removeProduct(d);
                                   },
                                   child: Padding(padding: EdgeInsets.only(right: 10.0),child: Icon(Icons.remove_circle,color: Colors.red,),
                                   )
