@@ -43,7 +43,7 @@ void getData() {
   }
 
  Future<String> createSale(String url, {Map body}) async {  
-  /*return http.post(
+  return http.post(
       url
     , headers: {
       "Accept": "application/json",
@@ -58,8 +58,8 @@ void getData() {
       }
 
     return response.body;
-    });*/
-    return 'ok';
+    });
+    //return 'ok';
   }
 
 
