@@ -19,6 +19,8 @@ Push Notifications con Firebase Cloud Messaging:
  - OnLaunch
  - OnResume
 
+Integración continua con codemagic.io
+
 Consumo de APIs REST de Axon Framework para solicitud de pedidos
 
 Validación de stock de medicamentos
