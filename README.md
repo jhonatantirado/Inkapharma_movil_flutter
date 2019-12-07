@@ -1,18 +1,30 @@
-# inkapharma
+# Inkapharma
 
-A new Flutter project.
+Aplicación móvil para clientes de la cadena de farmacias Inkapharma
 
-## Getting Started
+## Características
 
-This project is a starting point for a Flutter application.
+Un solo código fuente para Android y iOS
 
-A few resources to get you started if this is your first Flutter project:
+Autenticación con Firebase usando:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Google
+- Twitter
+- Facebook
+- Email
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-"# Inkapharma_movil_flutter" 
-# Inkapharma_movil_flutter
+Push Notifications con Firebase Cloud Messaging:
+
+ - OnMessage
+ - OnLaunch
+ - OnResume
+
+Consumo de APIs REST de Axon Framework para solicitud de pedidos
+
+Validación de stock de medicamentos
+
+Base de datos SQLite
+
+Registro de clave-valor con SharedPreferences y LocalStorage
+
+Construida con Flutter usando el lenguaje Dart
